@@ -1,7 +1,9 @@
 import 'package:fiscaliza_ja/Screens/HomeScreen/HomeScreen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
-void main() {
+void main() async {
+  await DotEnv().load('.env');
   runApp(Main());
 }
 
