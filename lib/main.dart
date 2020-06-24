@@ -1,4 +1,6 @@
 import 'package:fiscaliza_ja/Screens/HomeScreen/HomeScreen.dart';
+import 'package:fiscaliza_ja/Screens/StartAppScreen/StartAppScreen.dart';
+import 'package:fiscaliza_ja/Services/AuthService.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
@@ -7,17 +9,23 @@ void main() async {
   runApp(Main());
 }
 
-class Main extends StatelessWidget {
+class Main extends StatefulWidget {
+  @override
+  _MainState createState() => _MainState();
+}
+
+class _MainState extends State<Main> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Fiscaliza Já',
-      initialRoute: HomeScreen.route,
       theme: ThemeData(
         primaryColor: Colors.purple,
         accentColor: Colors.green,
       ),
+      initialRoute: HomeScreen.route,
       routes: {
+        StartAppScreen.route: (context) => StartAppScreen(),
         HomeScreen.route: (context) => HomeScreen(),
       },
     );
