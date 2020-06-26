@@ -1,9 +1,11 @@
 import 'package:fiscaliza_ja/Screens/HomeScreen/HomeScreen.dart';
+import 'package:fiscaliza_ja/Services/AuthService/AuthService.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 void main() async {
   await DotEnv().load('.env');
+  await AuthService.startAuth();
   runApp(Main());
 }
 
