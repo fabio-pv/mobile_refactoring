@@ -1,6 +1,4 @@
 import 'package:fiscaliza_ja/Screens/HomeScreen/HomeScreen.dart';
-import 'package:fiscaliza_ja/Screens/StartAppScreen/StartAppScreen.dart';
-import 'package:fiscaliza_ja/Services/AuthService.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
@@ -25,7 +23,6 @@ class _MainState extends State<Main> {
       ),
       initialRoute: HomeScreen.route,
       routes: {
-        StartAppScreen.route: (context) => StartAppScreen(),
         HomeScreen.route: (context) => HomeScreen(),
       },
     );
