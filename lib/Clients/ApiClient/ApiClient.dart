@@ -1,3 +1,6 @@
+import 'dart:io';
+
+import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:http/http.dart' as http;
 
@@ -24,15 +27,22 @@ class ApiClient {
     }
   }
 
-  Future<void> doRequest({
-    String endpoint,
-    Function method,
-    Object body = null,
-    int statusCodeExpected = null,
+  Future<http.Response> doRequest({
+    @required String endpoint,
+    @required Function method,
+    Object body,
+    int statusCodeExpected,
+    bool auth = true,
   }) async {
     try {
-      final url = this._makeCompleteURL(endpoint: endpoint);
-      final header = this._makeHeader();
+      final url = this._makeCompleteURL(
+        endpoint: endpoint,
+      );
+
+      final header = this._makeHeader(
+        auth: auth,
+      );
+
       final response = await this._makeRequest(
         method: method,
         url: url,
@@ -46,26 +56,39 @@ class ApiClient {
       );
 
       return response;
-
     } catch (e) {
       rethrow;
     }
   }
 
-  String _makeCompleteURL({String endpoint}) {
+  String _makeCompleteURL({@required String endpoint}) {
     return this._url + endpoint;
   }
 
-  Map<String, String> _makeHeader() {
+  Map<String, String> _makeHeader({@required bool auth}) {
     Map<String, String> header = {};
+    header = this._makeHeaderWithAuth(auth: auth, header: header);
+    return header;
+  }
+
+  Map<String, String> _makeHeaderWithAuth({
+    @required bool auth,
+    @required Map<String, String> header,
+  }) {
+    if (auth != true) {
+      return header;
+    }
+
+    header.addAll({HttpHeaders.authorizationHeader: 'Bearer ' + 'token aqui'});
+
     return header;
   }
 
   Future<http.Response> _makeRequest({
-    Function method,
-    String url,
+    @required Function method,
+    @required String url,
     Map<String, String> headers,
-    dynamic body = null,
+    dynamic body,
   }) async {
     if (this._requestWithoutBody.contains(method.runtimeType)) {
       return await method(

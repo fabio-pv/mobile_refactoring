@@ -1,5 +1,4 @@
 import 'package:fiscaliza_ja/Clients/ApiClient/ApiClient.dart';
-import 'package:fiscaliza_ja/Clients/ApiClient/ApiClientMethod.dart';
 import 'package:fiscaliza_ja/Services/AuthService/AuthTokenService.dart';
 
 class AuthService {
