@@ -15,7 +15,6 @@ class OccurrenceService {
             method: ApiClientMethod.GET,
             statusCodeExpected: 200,
           );
-
       print(response.statusCode);
     } catch (e) {
       rethrow;

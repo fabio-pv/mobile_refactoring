@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:fiscaliza_ja/Services/AuthService/AuthTokenService.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:http/http.dart' as http;
@@ -39,7 +40,7 @@ class ApiClient {
         endpoint: endpoint,
       );
 
-      final header = this._makeHeader(
+      final header = await this._makeHeader(
         auth: auth,
       );
 
@@ -65,21 +66,23 @@ class ApiClient {
     return this._url + endpoint;
   }
 
-  Map<String, String> _makeHeader({@required bool auth}) {
+  Future<Map<String, String>> _makeHeader({@required bool auth}) async {
     Map<String, String> header = {};
-    header = this._makeHeaderWithAuth(auth: auth, header: header);
+    header = await this._makeHeaderWithAuth(auth: auth, header: header);
     return header;
   }
 
-  Map<String, String> _makeHeaderWithAuth({
+  Future<Map<String, String>> _makeHeaderWithAuth({
     @required bool auth,
     @required Map<String, String> header,
-  }) {
+  }) async {
     if (auth != true) {
       return header;
     }
 
-    header.addAll({HttpHeaders.authorizationHeader: 'Bearer ' + 'token aqui'});
+    final authTokenService = await AuthTokenService.getInstance();
+    final token = await authTokenService.getTokenValid();
+    header.addAll({HttpHeaders.authorizationHeader: 'Bearer ' + token});
 
     return header;
   }

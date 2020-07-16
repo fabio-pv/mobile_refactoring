@@ -1,4 +1,9 @@
+import 'dart:convert';
+
 import 'package:fiscaliza_ja/Clients/ApiClient/ApiClient.dart';
+import 'package:fiscaliza_ja/Clients/ApiClient/ApiClientBody.dart';
+import 'package:fiscaliza_ja/Clients/ApiClient/ApiClientMethod.dart';
+import 'package:fiscaliza_ja/Models/Token.dart';
 import 'package:fiscaliza_ja/Services/AuthService/AuthTokenService.dart';
 
 class AuthService {
@@ -8,25 +13,27 @@ class AuthService {
     this._apiClient = new ApiClient();
   }
 
-  static Future<void> startAuth() async {
+  Future<Token> login({
+    String email,
+    String password,
+  }) async {
     try {
-      print('startAuth');
-      AuthService authService = new AuthService();
-      authService._getToken();
-    } catch (e) {
-      rethrow;
-    }
-  }
+      final body = ApiClientBody.makeBody(body: {
+        'email': email,
+        'password': password,
+      });
 
-  Future<void> _getToken() async {
-    try {
-      final authTokenService = await AuthTokenService.getInstance();
+      final response = await this._apiClient.doRequest(
+            endpoint: 'login',
+            method: ApiClientMethod.POST,
+            body: body,
+            auth: false,
+            statusCodeExpected: 200,
+          );
 
-      authTokenService.setToken(
-        token: 'wwwwwwwwwwwwwwwwww',
-      );
+      Token token = Token.fromJson(jsonDecode(response.body));
 
-      print(await authTokenService.getToken());
+      return token;
     } catch (e) {
       rethrow;
     }
