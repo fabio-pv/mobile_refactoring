@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:fiscaliza_ja/Models/Token.dart';
 import 'package:fiscaliza_ja/Services/AuthService/AuthService.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -41,7 +42,10 @@ class AuthTokenService {
 
       Token token = Token.fromJson(jsonDecode(lastToken));
       if (token.isExpired()) {
-        await this._tryRefreshToken();
+        await this._tryRefreshToken(
+          lastToken: token.accessToken,
+        );
+        await this.getTokenValid();
       }
 
       return token.accessToken;
@@ -67,9 +71,19 @@ class AuthTokenService {
     }
   }
 
-  Future<void> _tryRefreshToken() async {
+  Future<void> _tryRefreshToken({
+    @required String lastToken,
+  }) async {
     try {
-      print('_tryRefreshToken');
+      AuthService authService = new AuthService();
+
+      Token token = await authService.refreshToken(
+        tokenCustom: lastToken,
+      );
+
+      await this.setToken(
+        token: jsonEncode(token.toJson()),
+      );
     } catch (e) {
       rethrow;
     }

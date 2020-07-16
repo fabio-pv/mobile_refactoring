@@ -34,6 +34,7 @@ class ApiClient {
     Object body,
     int statusCodeExpected,
     bool auth = true,
+    String tokenCustom,
   }) async {
     try {
       final url = this._makeCompleteURL(
@@ -42,6 +43,7 @@ class ApiClient {
 
       final header = await this._makeHeader(
         auth: auth,
+        tokenCustom: tokenCustom,
       );
 
       final response = await this._makeRequest(
@@ -66,23 +68,34 @@ class ApiClient {
     return this._url + endpoint;
   }
 
-  Future<Map<String, String>> _makeHeader({@required bool auth}) async {
+  Future<Map<String, String>> _makeHeader({
+    @required bool auth,
+    @required String tokenCustom,
+  }) async {
     Map<String, String> header = {};
-    header = await this._makeHeaderWithAuth(auth: auth, header: header);
+    header = await this._makeHeaderWithAuth(
+      auth: auth,
+      header: header,
+      tokenCustom: tokenCustom,
+    );
     return header;
   }
 
   Future<Map<String, String>> _makeHeaderWithAuth({
     @required bool auth,
     @required Map<String, String> header,
+    @required tokenCustom,
   }) async {
     if (auth != true) {
       return header;
     }
 
-    final authTokenService = await AuthTokenService.getInstance();
-    final token = await authTokenService.getTokenValid();
-    header.addAll({HttpHeaders.authorizationHeader: 'Bearer ' + token});
+    if (tokenCustom == null) {
+      final authTokenService = await AuthTokenService.getInstance();
+      tokenCustom = await authTokenService.getTokenValid();
+    }
+
+    header.addAll({HttpHeaders.authorizationHeader: 'Bearer ' + tokenCustom});
 
     return header;
   }
