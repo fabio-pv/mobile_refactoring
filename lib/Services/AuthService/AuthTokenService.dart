@@ -26,26 +26,26 @@ class AuthTokenService {
     }
   }
 
-  /*CRiar model com validade e tudo mais*/
   Future<bool> setToken({String token}) async {
     return await this.sharedPreferences.setString(KEY_TOKEN, token);
   }
 
   Future<String> getTokenValid() async {
     try {
+      Token token;
+
       final lastToken = this.getToken();
 
       if (lastToken == null) {
-        await this._retriveTokenOff();
-        await this.getTokenValid();
+        token = await this._retriveTokenOff();
       }
 
-      Token token = Token.fromJson(jsonDecode(lastToken));
+      if (lastToken != null) {
+        token = Token.fromJson(jsonDecode(lastToken));
+      }
+
       if (token.isExpired()) {
-        await this._tryRefreshToken(
-          lastToken: token.accessToken,
-        );
-        await this.getTokenValid();
+        token = await this._tryRefreshToken(lastToken: token.accessToken);
       }
 
       return token.accessToken;
@@ -54,7 +54,7 @@ class AuthTokenService {
     }
   }
 
-  Future<void> _retriveTokenOff() async {
+  Future<Token> _retriveTokenOff() async {
     try {
       AuthService authService = new AuthService();
 
@@ -66,12 +66,14 @@ class AuthTokenService {
       await this.setToken(
         token: jsonEncode(token.toJson()),
       );
+
+      return token;
     } catch (e) {
       rethrow;
     }
   }
 
-  Future<void> _tryRefreshToken({
+  Future<Token> _tryRefreshToken({
     @required String lastToken,
   }) async {
     try {
@@ -84,6 +86,8 @@ class AuthTokenService {
       await this.setToken(
         token: jsonEncode(token.toJson()),
       );
+
+      return token;
     } catch (e) {
       rethrow;
     }
