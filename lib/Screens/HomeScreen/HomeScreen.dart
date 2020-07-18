@@ -35,8 +35,13 @@ class HomeScreen extends StatelessWidget {
           padding: EdgeInsets.all(
             10.0,
           ),
-          child: Column(
+          child: Stack(
             children: [
+              /*Container(
+                width: double.maxFinite,
+                height: 100,
+                color: Colors.greenAccent,
+              ),*/
               HeaderMenu(),
             ],
           ),
