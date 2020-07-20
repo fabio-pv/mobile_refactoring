@@ -1,4 +1,4 @@
-import 'package:fiscaliza_ja/WidgetPatterns/CardBorderRadius.dart';
+import 'package:fiscaliza_ja/Patterns/GenericPattern.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 
@@ -7,7 +7,7 @@ class TitleHeaderMenu extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       elevation: 2,
-      shape: CardBorderRadius.pattern(),
+      shape: GenericPattern.CARD_BORDER_RADIUS,
       child: Container(
         padding: EdgeInsets.only(
           left: 20,

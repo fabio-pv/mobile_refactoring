@@ -1,9 +1,8 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:fiscaliza_ja/Controllers/OccurrenceController.dart';
 import 'package:fiscaliza_ja/Models/Occurrence.dart';
-import 'package:fiscaliza_ja/Screens/HomeScreen/ListHomeScreen.dart';
+import 'package:fiscaliza_ja/Widgets/Occurrence/ListOccurrenceWidget.dart';
 import 'package:fiscaliza_ja/Screens/HomeScreen/SearchHomeScreen.dart';
-import 'package:fiscaliza_ja/Services/OccurrenceService.dart';
-import 'package:fiscaliza_ja/Utils/ErroUtil.dart';
 import 'package:fiscaliza_ja/Widgets/HeaderMenu/HeaderMenu.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
@@ -22,7 +21,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   _HomeScreenState({this.occurrenceController});
 
-  List<Occurrence> _occurrenceList;
+  List<Occurrence> _occurrenceList = [];
 
   @override
   void initState() {
@@ -37,7 +36,6 @@ class _HomeScreenState extends State<HomeScreen> {
       setState(() {
         this._occurrenceList = this._occurrenceList;
       });
-
     } catch (e) {
       print(e);
       /*ErrorUtil.error(exception: e);*/
@@ -48,17 +46,14 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: SafeArea(
-        child: Padding(
-          padding: EdgeInsets.all(
-            10.0,
-          ),
-          child: Stack(
-            children: [
-              ListHomeScreen(),
-              HeaderMenu(),
-              SearchHomeScreen(),
-            ],
-          ),
+        child: Stack(
+          children: [
+            ListOccurrenceWidget(
+              occurrenceList: this._occurrenceList,
+            ),
+            HeaderMenu(),
+            SearchHomeScreen(),
+          ],
         ),
       ),
     );

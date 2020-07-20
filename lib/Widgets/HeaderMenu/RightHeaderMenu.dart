@@ -1,4 +1,3 @@
-import 'package:fiscaliza_ja/WidgetPatterns/CardBorderRadius.dart';
 import 'package:flutter/material.dart';
 
 class RightHeaderMenu extends StatelessWidget {

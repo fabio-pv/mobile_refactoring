@@ -4,8 +4,8 @@ class SearchHomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Positioned(
-      top: 70,
-      left: 4,
+      top: 80,
+      left: 15,
       child: FloatingActionButton(
         onPressed: null,
         heroTag: null,
