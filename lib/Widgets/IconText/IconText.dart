@@ -4,10 +4,12 @@ import 'package:flutter/painting.dart';
 class IconText extends StatelessWidget {
   final IconData icon;
   final String text;
+  final Color color;
 
   IconText({
     @required this.icon,
     @required this.text,
+    this.color = Colors.black,
   });
 
   @override
@@ -16,11 +18,20 @@ class IconText extends StatelessWidget {
       padding: EdgeInsets.only(right: 20),
       child: Row(
         children: [
-          Icon(this.icon),
+          Icon(
+            this.icon,
+            color: this.color,
+          ),
           SizedBox(
             width: 5,
           ),
-          Text(this.text)
+          Text(
+            this.text,
+            style: TextStyle(
+              fontWeight: FontWeight.w600,
+              color: this.color,
+            ),
+          ),
         ],
       ),
     );
