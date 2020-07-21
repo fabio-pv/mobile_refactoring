@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:fiscaliza_ja/Models/User.dart';
 import 'package:fiscaliza_ja/Patterns/GenericPattern.dart';
+import 'package:fiscaliza_ja/Widgets/Occurrence/ImageElementOccurrenceWidget.dart';
 import 'package:fiscaliza_ja/Widgets/Occurrence/UserImageOccurrenceWidget.dart';
 import 'package:flutter/material.dart';
 import 'package:fiscaliza_ja/Models/Occurrence.dart';
@@ -63,26 +64,14 @@ class _ImageOccurrenceWidgetState extends State<ImageOccurrenceWidget> {
       children: [
         Row(
           children: [
-            CachedNetworkImage(
-              imageUrl: widget.urls[this._currentUrl],
-              placeholder: (context, url) => CircularProgressIndicator(),
-              errorWidget: (context, url, error) => Icon(Icons.error),
-              imageBuilder: (context, imageProvider) => Container(
-                padding: EdgeInsets.all(2),
+            ImageElementOccurrenceWidget(
+              url: widget.urls[this._currentUrl],
+              placeholder: Container(
+                height: 130,
+                width: 130,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(100),
                   color: Colors.grey[200],
-                ),
-                child: Container(
-                  width: 130,
-                  height: 130,
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    image: DecorationImage(
-                      image: imageProvider,
-                      fit: BoxFit.cover,
-                    ),
-                  ),
                 ),
               ),
             ),
