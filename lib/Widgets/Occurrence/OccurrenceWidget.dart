@@ -34,8 +34,9 @@ class OccurrenceWidget extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    ImageOccurrenceWidget(),
-                    SizedBox(width: 15),
+                    ImageOccurrenceWidget(
+                      urls: this.occurrence.getImagens(),
+                    ),
                     TitleTextOccurrenceWidget(
                       title: this.occurrence.subsecretary.nome,
                       text: this.occurrence.texto,

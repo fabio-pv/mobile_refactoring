@@ -22,6 +22,7 @@ abstract class BaseService {
             endpoint: this.endpoint,
             method: ApiClientMethod.GET,
             statusCodeExpected: StatusCodeUtil.OK,
+            queryString: queryString,
           );
 
       Iterable iterable = jsonDecode(response.body)['data'];

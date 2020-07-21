@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:fiscaliza_ja/Controllers/OccurrenceController.dart';
 import 'package:fiscaliza_ja/Models/Occurrence.dart';

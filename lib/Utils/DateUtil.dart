@@ -18,4 +18,8 @@ class DateUtil {
     return format.format(this._dateRaw);
   }
 
+  String toHuman() {
+    print(DateTime.now());
+  }
+
 }

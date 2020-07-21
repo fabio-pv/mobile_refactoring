@@ -69,4 +69,23 @@ class Occurrence {
     }
     return data;
   }
+
+  List<String> getImagens() {
+    List<String> imageList = [];
+
+    if (this.subsecretary.imagem.isNotEmpty) {
+      imageList.add(this.subsecretary.imagem);
+    }
+
+    if (this.occurrenceFile == null) {
+      return imageList;
+    }
+
+    imageList.clear();
+    this.occurrenceFile.forEach((element) {
+      imageList.add(element.fileLink);
+    });
+
+    return imageList;
+  }
 }

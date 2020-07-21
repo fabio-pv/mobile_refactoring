@@ -41,6 +41,6 @@ class OccurrenceStatus {
   }
 
   Color getStatusColor() {
-    return OccurrenceStatus.STATUS[this.id];
+    return OccurrenceStatus.STATUS[this.id - 1];
   }
 }

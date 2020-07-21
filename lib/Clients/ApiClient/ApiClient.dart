@@ -38,8 +38,13 @@ class ApiClient {
     String queryString = '',
   }) async {
     try {
-      final url = this._makeCompleteURL(
+      var url = this._makeCompleteURL(
         endpoint: endpoint,
+      );
+
+      url = this._addQueryString(
+        url: url,
+        queryString: queryString,
       );
 
       final header = await this._makeHeader(
@@ -131,7 +136,7 @@ class ApiClient {
     }
   }
 
-  String addQueryString({
+  String _addQueryString({
     String url,
     String queryString = '',
   }) {

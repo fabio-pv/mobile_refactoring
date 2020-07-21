@@ -11,7 +11,21 @@ class OccurrenceController {
 
   Future<List<Occurrence>> getList() async {
     try {
-      final iterable = await this._occurrenceService.retriveAll();
+      final queryString = RequestUtil()
+          /*.where(
+            property: 'codigo',
+            operator: RequestUtil.WHERE_EQUAL,
+            value: '2019-114291',
+          )*/
+          .orderBy(
+            property: 'id',
+            order: RequestUtil.ORDER_DESC,
+          )
+          .result();
+
+      final iterable = await this._occurrenceService.retriveAll(
+            queryString: queryString,
+          );
 
       List<Occurrence> occurrenceList =
           iterable.map((x) => Occurrence.fromJson(x)).toList();

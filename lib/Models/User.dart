@@ -1,7 +1,7 @@
 class User {
   String uuid;
   String name;
-  Null foto;
+  String foto;
 
   User({this.uuid, this.name, this.foto});
 
