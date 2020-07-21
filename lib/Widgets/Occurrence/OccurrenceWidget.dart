@@ -36,6 +36,7 @@ class OccurrenceWidget extends StatelessWidget {
                   children: [
                     ImageOccurrenceWidget(
                       urls: this.occurrence.getImagens(),
+                      user: this.occurrence.user,
                     ),
                     TitleTextOccurrenceWidget(
                       title: this.occurrence.subsecretary.nome,

@@ -16,7 +16,7 @@ class TitleTextOccurrenceWidget extends StatelessWidget {
         children: [
           Text(
             this.title,
-            textAlign: TextAlign.center,
+            textAlign: TextAlign.left,
             style: TextStyle(
               fontWeight: FontWeight.w700,
               fontSize: 16,
@@ -25,9 +25,9 @@ class TitleTextOccurrenceWidget extends StatelessWidget {
           SizedBox(height: 5,),
           Text(
             this.text,
-            textAlign: TextAlign.center,
+            textAlign: TextAlign.left,
             overflow: TextOverflow.ellipsis,
-            maxLines: 5,
+            maxLines: 6,
             style: TextStyle(
               fontWeight: FontWeight.w400,
               fontSize: 14,

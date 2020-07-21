@@ -1,20 +1,28 @@
 import 'dart:async';
 
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:fiscaliza_ja/Models/User.dart';
+import 'package:fiscaliza_ja/Patterns/GenericPattern.dart';
+import 'package:fiscaliza_ja/Widgets/Occurrence/UserImageOccurrenceWidget.dart';
 import 'package:flutter/material.dart';
 import 'package:fiscaliza_ja/Models/Occurrence.dart';
 
 class ImageOccurrenceWidget extends StatefulWidget {
   final List<String> urls;
+  final User user;
 
-  ImageOccurrenceWidget({@required this.urls});
+  ImageOccurrenceWidget({
+    @required this.urls,
+    @required this.user,
+  });
 
   @override
   _ImageOccurrenceWidgetState createState() => _ImageOccurrenceWidgetState();
 }
 
 class _ImageOccurrenceWidgetState extends State<ImageOccurrenceWidget> {
-  int currentUrl = 0;
+  int _currentUrl = 0;
+  Timer _timer;
 
   @override
   void initState() {
@@ -22,49 +30,68 @@ class _ImageOccurrenceWidgetState extends State<ImageOccurrenceWidget> {
     super.initState();
   }
 
+  @override
+  void dispose() {
+    if (this._timer != null) {
+      this._timer.cancel();
+    }
+    super.dispose();
+  }
+
   void _autoGallery() {
     if (widget.urls.length <= 1) {
       return;
     }
 
-    Timer.periodic(Duration(seconds: 2), (timer) {
-      if (currentUrl >= (widget.urls.length - 1)) {
+    this._timer = Timer.periodic(Duration(seconds: 2), (timer) {
+      if (_currentUrl >= (widget.urls.length - 1)) {
         setState(() {
-          currentUrl = 0;
+          _currentUrl = 0;
         });
         return;
       }
 
-      print(currentUrl);
-      print(widget.urls.length);
-
       setState(() {
-        currentUrl++;
+        _currentUrl++;
       });
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    return Row(
+    return Stack(
       children: [
-        CachedNetworkImage(
-          imageUrl: widget.urls[currentUrl],
-          placeholder: (context, url) => CircularProgressIndicator(),
-          errorWidget: (context, url, error) => Icon(Icons.error),
-          imageBuilder: (context, imageProvider) => Container(
-            width: 120,
-            height: 120,
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              image: DecorationImage(
-                image: imageProvider,
-                fit: BoxFit.cover,
+        Row(
+          children: [
+            CachedNetworkImage(
+              imageUrl: widget.urls[this._currentUrl],
+              placeholder: (context, url) => CircularProgressIndicator(),
+              errorWidget: (context, url, error) => Icon(Icons.error),
+              imageBuilder: (context, imageProvider) => Container(
+                padding: EdgeInsets.all(2),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(100),
+                  color: Colors.grey[200],
+                ),
+                child: Container(
+                  width: 130,
+                  height: 130,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    image: DecorationImage(
+                      image: imageProvider,
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                ),
               ),
             ),
-          ),
+            SizedBox(width: 15),
+          ],
         ),
-        SizedBox(width: 15),
+        UserImageOccurrenceWidget(
+          user: widget.user,
+        ),
       ],
     );
   }

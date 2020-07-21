@@ -12,13 +12,13 @@ class OccurrenceController {
   Future<List<Occurrence>> getList() async {
     try {
       final queryString = RequestUtil()
-          /*.where(
+          .where(
             property: 'codigo',
-            operator: RequestUtil.WHERE_EQUAL,
+            operator: RequestUtil.WHERE_LESS_THAN_OR_EQUAL_TO,
             value: '2019-114291',
-          )*/
+          )
           .orderBy(
-            property: 'id',
+            property: 'codigo',
             order: RequestUtil.ORDER_DESC,
           )
           .result();
