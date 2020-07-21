@@ -35,6 +35,7 @@ class ApiClient {
     int statusCodeExpected,
     bool auth = true,
     String tokenCustom,
+    String queryString = '',
   }) async {
     try {
       final url = this._makeCompleteURL(
@@ -128,5 +129,12 @@ class ApiClient {
     if (statusCode != response.statusCode) {
       throw new Exception(response.body);
     }
+  }
+
+  String addQueryString({
+    String url,
+    String queryString = '',
+  }) {
+    return url + queryString;
   }
 }

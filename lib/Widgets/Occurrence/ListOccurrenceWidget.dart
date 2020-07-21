@@ -11,7 +11,7 @@ class ListOccurrenceWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListView.builder(
       padding: EdgeInsets.only(
-        top: 130,
+        top: 140,
         left: 10,
         right: 10,
       ),

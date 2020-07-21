@@ -2,10 +2,8 @@ import 'dart:convert';
 
 import 'package:fiscaliza_ja/Clients/ApiClient/ApiClient.dart';
 import 'package:fiscaliza_ja/Clients/ApiClient/ApiClientMethod.dart';
-import 'package:fiscaliza_ja/Models/Occurrence.dart';
 import 'package:fiscaliza_ja/Utils/StatusCodeUtil.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:http/http.dart';
 
 abstract class BaseService {
   ApiClient _apiClient;
@@ -16,7 +14,9 @@ abstract class BaseService {
     this._apiClient = new ApiClient();
   }
 
-  Future<Iterable> retriveAll() async {
+  Future<Iterable> retriveAll({
+    String queryString = '',
+  }) async {
     try {
       final response = await this._apiClient.doRequest(
             endpoint: this.endpoint,

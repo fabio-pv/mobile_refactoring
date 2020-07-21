@@ -1,5 +1,6 @@
 import 'package:fiscaliza_ja/Models/Occurrence.dart';
 import 'package:fiscaliza_ja/Services/OccurrenceService.dart';
+import 'package:fiscaliza_ja/Utils/RequestUtil.dart';
 
 class OccurrenceController {
   OccurrenceService _occurrenceService;

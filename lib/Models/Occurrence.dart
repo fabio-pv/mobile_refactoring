@@ -1,3 +1,4 @@
+import 'package:fiscaliza_ja/Models/OccurrenceFile.dart';
 import 'package:fiscaliza_ja/Models/OccurrenceStatus.dart';
 import 'package:fiscaliza_ja/Models/Subsecretary.dart';
 import 'package:fiscaliza_ja/Models/User.dart';
@@ -9,7 +10,7 @@ class Occurrence {
   String createdAt;
   int visualizacoes;
   OccurrenceStatus occurrenceStatus;
-  Null occurrenceFile;
+  List<OccurrenceFile> occurrenceFile;
   User user;
   Subsecretary subsecretary;
 
@@ -34,7 +35,12 @@ class Occurrence {
     occurrenceStatus = json['occurrence_status'] != null
         ? new OccurrenceStatus.fromJson(json['occurrence_status'])
         : null;
-    occurrenceFile = json['occurrence_file'];
+    if (json['occurrence_file'] != null) {
+      occurrenceFile = new List<OccurrenceFile>();
+      json['occurrence_file'].forEach((v) {
+        occurrenceFile.add(new OccurrenceFile.fromJson(v));
+      });
+    }
     user = json['user'] != null ? new User.fromJson(json['user']) : null;
     subsecretary = json['subsecretary'] != null
         ? new Subsecretary.fromJson(json['subsecretary'])
@@ -51,7 +57,10 @@ class Occurrence {
     if (this.occurrenceStatus != null) {
       data['occurrence_status'] = this.occurrenceStatus.toJson();
     }
-    data['occurrence_file'] = this.occurrenceFile;
+    if (this.occurrenceFile != null) {
+      data['occurrence_file'] =
+          this.occurrenceFile.map((v) => v.toJson()).toList();
+    }
     if (this.user != null) {
       data['user'] = this.user.toJson();
     }
