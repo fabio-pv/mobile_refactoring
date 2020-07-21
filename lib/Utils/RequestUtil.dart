@@ -61,6 +61,14 @@ class RequestUtil {
     return this;
   }
 
+  RequestUtil page({int value}) {
+    final page = 'page=$value';
+    this.addInQuery(
+      newQuery: page,
+    );
+    return this;
+  }
+
   void addInQuery({
     @required String newQuery,
   }) {

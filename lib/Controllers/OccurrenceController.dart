@@ -9,7 +9,9 @@ class OccurrenceController {
     this._occurrenceService = new OccurrenceService();
   }
 
-  Future<List<Occurrence>> getList() async {
+  Future<List<Occurrence>> getList({
+    int page = 1,
+  }) async {
     try {
       final queryString = RequestUtil()
           .where(
@@ -21,6 +23,7 @@ class OccurrenceController {
             property: 'codigo',
             order: RequestUtil.ORDER_DESC,
           )
+          .page(value: page)
           .result();
 
       final iterable = await this._occurrenceService.retriveAll(

@@ -7,7 +7,6 @@ import 'package:fiscaliza_ja/Widgets/Occurrence/ListOccurrenceWidget.dart';
 import 'package:fiscaliza_ja/Screens/HomeScreen/SearchHomeScreen.dart';
 import 'package:fiscaliza_ja/Widgets/HeaderMenu/HeaderMenu.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/painting.dart';
 
 class HomeScreen extends StatefulWidget {
   static const route = 'home-screen';
@@ -31,12 +30,14 @@ class _HomeScreenState extends State<HomeScreen> {
     super.initState();
   }
 
-  Future<void> load() async {
+  Future<void> load({int page = 1}) async {
     try {
-      this._occurrenceList = await this.occurrenceController.getList();
+      final newOccurrenceList = await this.occurrenceController.getList(
+            page: page,
+          );
 
       setState(() {
-        this._occurrenceList = this._occurrenceList;
+        this._occurrenceList = [...this._occurrenceList, ...newOccurrenceList];
       });
     } catch (e) {
       print(e);
@@ -52,6 +53,7 @@ class _HomeScreenState extends State<HomeScreen> {
           children: [
             ListOccurrenceWidget(
               occurrenceList: this._occurrenceList,
+              loadHandler: this.load,
             ),
             HeaderMenu(),
             SearchHomeScreen(),
