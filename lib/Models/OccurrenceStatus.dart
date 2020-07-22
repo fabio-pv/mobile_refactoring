@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
 class OccurrenceStatus {
-  static Color STATUS_1_COLOR = Colors.orange[800];
-  static Color STATUS_2_COLOR = Colors.deepOrange[800];
-  static Color STATUS_3_COLOR = Colors.blue[800];
-  static Color STATUS_4_COLOR = Colors.deepPurple[800];
+  static Color STATUS_1_COLOR = Colors.orangeAccent[700];
+  static Color STATUS_2_COLOR = Colors.deepOrangeAccent[700];
+  static Color STATUS_3_COLOR = Colors.blueAccent[700];
+  static Color STATUS_4_COLOR = Colors.deepPurpleAccent[700];
   static Color STATUS_5_COLOR = Colors.greenAccent[700];
   static Color STATUS_6_COLOR = Colors.redAccent[700];
   static List<Color> STATUS = [

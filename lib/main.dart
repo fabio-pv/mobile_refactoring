@@ -19,7 +19,7 @@ class _MainState extends State<Main> {
       title: 'Fiscaliza Já',
       theme: ThemeData(
         primaryColor: Colors.purple,
-        accentColor: Colors.green,
+        accentColor: Colors.purpleAccent,
       ),
       initialRoute: HomeScreen.route,
       routes: {
