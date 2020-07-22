@@ -4,7 +4,8 @@ class RightHeaderMenu extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Positioned(
-      right: 0,
+      right: 8,
+      top: 17,
       child: FloatingActionButton(
         backgroundColor: Colors.white,
         onPressed: () {},

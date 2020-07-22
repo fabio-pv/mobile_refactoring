@@ -1,4 +1,5 @@
 import 'package:fiscaliza_ja/Widgets/HeaderMenu/LeftHeaderMenu.dart';
+import 'package:fiscaliza_ja/Widgets/HeaderMenu/MenuHeaderMenu.dart';
 import 'package:fiscaliza_ja/Widgets/HeaderMenu/RightHeaderMenu.dart';
 import 'package:fiscaliza_ja/Widgets/HeaderMenu/TitleHeaderMenu.dart';
 import 'package:flutter/material.dart';
@@ -10,18 +11,21 @@ class HeaderMenu extends StatelessWidget {
     return Align(
       alignment: Alignment.topLeft,
       child: Container(
-        padding: EdgeInsets.all(10.0),
         child: Stack(
-          alignment: Alignment.centerLeft,
+          alignment: Alignment.topLeft,
           children: [
-            Row(
-              children: [
-                LeftHeaderMenu(),
-                SizedBox(width: 10),
-                TitleHeaderMenu(),
-              ],
+            Container(
+              padding: EdgeInsets.all(10.0),
+              child: Row(
+                children: [
+                  LeftHeaderMenu(),
+                  SizedBox(width: 10),
+                  TitleHeaderMenu(),
+                ],
+              ),
             ),
             RightHeaderMenu(),
+            MenuHeaderMenu(),
           ],
         ),
       ),
