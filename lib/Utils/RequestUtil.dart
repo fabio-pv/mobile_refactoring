@@ -23,7 +23,14 @@ class RequestUtil {
     @required String property,
     @required String operator,
     @required String value,
+    bool ignoreNull = false,
   }) {
+    if (ignoreNull == true) {
+      if (value == null) {
+        return this;
+      }
+    }
+
     final filter = 'filters[' +
         this._whereCount.toString() +
         '][' +

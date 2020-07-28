@@ -23,6 +23,7 @@ class _HomeScreenState extends State<HomeScreen> {
   _HomeScreenState({this.occurrenceController});
 
   List<Occurrence> _occurrenceList = [];
+  int lastPage;
 
   @override
   void initState() {
@@ -30,12 +31,23 @@ class _HomeScreenState extends State<HomeScreen> {
     super.initState();
   }
 
-  Future<void> load({int page = 1}) async {
+  Future<void> load({
+    int page = 1,
+    String keyword,
+  }) async {
     try {
+
+      if (this.lastPage == page) {
+        this._occurrenceList = [];
+      }
+
       final newOccurrenceList = await this.occurrenceController.getList(
             page: page,
+            keyword: keyword,
           );
 
+      print(this._occurrenceList.length);
+      this.lastPage = page;
       setState(() {
         this._occurrenceList = [...this._occurrenceList, ...newOccurrenceList];
       });
@@ -55,7 +67,9 @@ class _HomeScreenState extends State<HomeScreen> {
               occurrenceList: this._occurrenceList,
               loadHandler: this.load,
             ),
-            SearchHomeScreen(),
+            SearchHomeScreen(
+              load: this.load,
+            ),
             HeaderMenu(),
           ],
         ),

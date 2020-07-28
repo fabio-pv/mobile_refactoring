@@ -11,6 +11,7 @@ class OccurrenceController {
 
   Future<List<Occurrence>> getList({
     int page = 1,
+    String keyword,
   }) async {
     try {
       final queryString = RequestUtil()
@@ -18,6 +19,12 @@ class OccurrenceController {
             property: 'codigo',
             operator: RequestUtil.WHERE_LESS_THAN_OR_EQUAL_TO,
             value: '2019-114291',
+          )
+          .where(
+            property: 'texto',
+            operator: RequestUtil.WHERE_LIKE,
+            value: keyword,
+            ignoreNull: true,
           )
           .orderBy(
             property: 'codigo',
