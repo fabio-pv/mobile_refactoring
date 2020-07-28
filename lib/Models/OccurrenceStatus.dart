@@ -7,6 +7,7 @@ class OccurrenceStatus {
   static Color STATUS_4_COLOR = Colors.deepPurpleAccent[700];
   static Color STATUS_5_COLOR = Colors.greenAccent[700];
   static Color STATUS_6_COLOR = Colors.redAccent[700];
+
   static List<Color> STATUS = [
     OccurrenceStatus.STATUS_1_COLOR,
     OccurrenceStatus.STATUS_2_COLOR,

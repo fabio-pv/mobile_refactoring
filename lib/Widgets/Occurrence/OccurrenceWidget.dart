@@ -19,6 +19,7 @@ class OccurrenceWidget extends StatelessWidget {
       margin: EdgeInsets.only(bottom: 40),
       shape: GenericPattern.CARD_BORDER_RADIUS,
       child: InkWell(
+        borderRadius: BorderRadius.circular(35),
         onTap: () {},
         child: DefaultTextStyle(
           style: TextStyle(

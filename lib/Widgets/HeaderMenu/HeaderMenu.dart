@@ -5,7 +5,21 @@ import 'package:fiscaliza_ja/Widgets/HeaderMenu/TitleHeaderMenu.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 
-class HeaderMenu extends StatelessWidget {
+class HeaderMenu extends StatefulWidget {
+  @override
+  _HeaderMenuState createState() => _HeaderMenuState();
+}
+
+class _HeaderMenuState extends State<HeaderMenu> {
+  bool openMenu = false;
+
+  void menuController() {
+    setState(() {
+      this.openMenu = !this.openMenu;
+    });
+    print(this.openMenu);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Align(
@@ -18,14 +32,19 @@ class HeaderMenu extends StatelessWidget {
               padding: EdgeInsets.all(10.0),
               child: Row(
                 children: [
-                  LeftHeaderMenu(),
+                  LeftHeaderMenu(
+                    menuControllerHandler: this.menuController,
+                  ),
                   SizedBox(width: 10),
                   TitleHeaderMenu(),
                 ],
               ),
             ),
             RightHeaderMenu(),
-            MenuHeaderMenu(),
+            MenuHeaderMenu(
+              menuControllerHandler: this.menuController,
+              openClose: this.openMenu,
+            ),
           ],
         ),
       ),
