@@ -1,5 +1,6 @@
 import 'package:fiscaliza_ja/Models/Occurrence.dart';
 import 'package:fiscaliza_ja/Patterns/GenericPattern.dart';
+import 'package:fiscaliza_ja/Screens/OccurrenceDetailScreen/OccurrenceDetailScreen.dart';
 import 'package:fiscaliza_ja/Widgets/Occurrence/ImageOccurrenceWidget.dart';
 import 'package:fiscaliza_ja/Widgets/Occurrence/StatisticOccurrenceWidget.dart';
 import 'package:fiscaliza_ja/Widgets/Occurrence/TitleTextOccurrenceWidget.dart';
@@ -20,7 +21,16 @@ class OccurrenceWidget extends StatelessWidget {
       shape: GenericPattern.CARD_BORDER_RADIUS,
       child: InkWell(
         borderRadius: BorderRadius.circular(35),
-        onTap: () {},
+        onTap: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => OccurrenceDetailScreen(
+                uuid: this.occurrence.uuid,
+              ),
+            ),
+          );
+        },
         child: DefaultTextStyle(
           style: TextStyle(
             color: Colors.white,

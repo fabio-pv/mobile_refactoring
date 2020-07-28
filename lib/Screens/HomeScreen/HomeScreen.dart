@@ -36,7 +36,6 @@ class _HomeScreenState extends State<HomeScreen> {
     String keyword,
   }) async {
     try {
-
       if (this.lastPage == page) {
         this._occurrenceList = [];
       }
@@ -46,7 +45,6 @@ class _HomeScreenState extends State<HomeScreen> {
             keyword: keyword,
           );
 
-      print(this._occurrenceList.length);
       this.lastPage = page;
       setState(() {
         this._occurrenceList = [...this._occurrenceList, ...newOccurrenceList];
