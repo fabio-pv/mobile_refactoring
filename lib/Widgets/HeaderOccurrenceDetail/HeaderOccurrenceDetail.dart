@@ -10,14 +10,19 @@ class HeaderOccurrenceDetail extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           FloatingActionButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.pop(context);
+            },
             heroTag: null,
             mini: true,
             backgroundColor: Colors.grey[400],
             child: Icon(
-              Icons.keyboard_arrow_left,
+              Icons.arrow_back,
               color: Colors.black,
             ),
+          ),
+          SizedBox(
+            width: 10,
           ),
           Card(
             elevation: 4,
@@ -30,7 +35,7 @@ class HeaderOccurrenceDetail extends StatelessWidget {
                 right: 15,
               ),
               child: Center(
-                child: Text('Visualizações'),
+                child: Text('Visualizações', style: Theme.of(context).textTheme.subtitle2,),
               ),
             ),
           ),
@@ -38,6 +43,7 @@ class HeaderOccurrenceDetail extends StatelessWidget {
           Column(
             children: [
               FloatingActionButton(
+                heroTag: null,
                 backgroundColor: Theme.of(context).primaryColor,
                 child: Icon(Icons.map),
                 onPressed: () {},
@@ -46,13 +52,14 @@ class HeaderOccurrenceDetail extends StatelessWidget {
                 height: 10,
               ),
               FloatingActionButton(
+                heroTag: null,
                 mini: true,
                 backgroundColor: Theme.of(context).accentColor,
                 child: Icon(Icons.thumb_up),
                 onPressed: () {},
               ),
-
               FloatingActionButton(
+                heroTag: null,
                 mini: true,
                 backgroundColor: Theme.of(context).accentColor,
                 child: Icon(Icons.favorite),

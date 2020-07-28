@@ -14,7 +14,7 @@ class OccurrenceDetailScreen extends StatelessWidget {
       body: SafeArea(
         child: Stack(
           children: [
-            ListView(
+            /*ListView(
               children: List.generate(20, (index) {
                 return Container(
                   height: 20,
@@ -22,7 +22,7 @@ class OccurrenceDetailScreen extends StatelessWidget {
                   margin: EdgeInsets.only(bottom: 20),
                 );
               }),
-            ),
+            ),*/
             HeaderOccurrenceDetail(),
           ],
         ),
