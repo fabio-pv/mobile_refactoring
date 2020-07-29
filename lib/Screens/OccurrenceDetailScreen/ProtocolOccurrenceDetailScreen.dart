@@ -1,4 +1,5 @@
 import 'package:fiscaliza_ja/Patterns/GenericPattern.dart';
+import 'package:fiscaliza_ja/Screens/OccurrenceDetailScreen/CardDefaultOccurrenceDetailScreen.dart';
 import 'package:flutter/material.dart';
 
 class ProtocolOccurrenceDetailScreen extends StatelessWidget {
@@ -9,17 +10,10 @@ class ProtocolOccurrenceDetailScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     print(this.protocol);
-    return Center(
-      child: Card(
-        elevation: 2,
-        shape: GenericPattern.CARD_BORDER_RADIUS,
-        child: Container(
-          width: 200,
-          padding: EdgeInsets.all(15.0),
-          child: Center(
-            child: Text('Protocolo: ' + this.protocol),
-          ),
-        ),
+    return CardDefaultOccurrenceDetailScreen(
+      width: 200,
+      child: Center(
+        child: Text('Protocolo: ' + this.protocol),
       ),
     );
   }

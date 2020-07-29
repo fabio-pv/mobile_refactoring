@@ -1,5 +1,6 @@
 import 'package:fiscaliza_ja/Models/Occurrence.dart';
 import 'package:fiscaliza_ja/Screens/OccurrenceDetailScreen/ProtocolOccurrenceDetailScreen.dart';
+import 'package:fiscaliza_ja/Screens/OccurrenceDetailScreen/UserOccurrenceDetailScreen/UserOccurrenceDetailScreen.dart';
 import 'package:flutter/material.dart';
 
 class ListOccurrenceDetailScreen extends StatelessWidget {
@@ -19,6 +20,7 @@ class ListOccurrenceDetailScreen extends StatelessWidget {
         ProtocolOccurrenceDetailScreen(
           protocol: this.occurrence.codigo,
         ),
+        UserOccurrenceDetailScreen(),
       ],
     );
   }

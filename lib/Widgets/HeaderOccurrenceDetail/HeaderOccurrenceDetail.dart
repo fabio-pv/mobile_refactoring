@@ -1,7 +1,12 @@
+import 'package:badges/badges.dart';
 import 'package:fiscaliza_ja/Patterns/GenericPattern.dart';
 import 'package:flutter/material.dart';
 
 class HeaderOccurrenceDetail extends StatelessWidget {
+  final int views;
+
+  HeaderOccurrenceDetail({@required this.views});
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -37,7 +42,7 @@ class HeaderOccurrenceDetail extends StatelessWidget {
               ),
               child: Center(
                 child: Text(
-                  'Visualizações',
+                  this.views.toString() + ' Visualizações',
                   style: Theme.of(context).textTheme.subtitle2,
                 ),
               ),
@@ -53,15 +58,28 @@ class HeaderOccurrenceDetail extends StatelessWidget {
                 onPressed: () {},
               ),
               SizedBox(
-                height: 10,
+                height: 15,
               ),
-              FloatingActionButton(
-                elevation: 4,
-                heroTag: null,
-                mini: true,
-                backgroundColor: Theme.of(context).accentColor,
-                child: Icon(Icons.thumb_up),
-                onPressed: () {},
+              Badge(
+                badgeColor: Theme.of(context).primaryColor,
+                shape: BadgeShape.square,
+                borderRadius: 20,
+                badgeContent: Text(
+                  '666',
+                  style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 11,
+                    fontWeight: FontWeight.w400,
+                  ),
+                ),
+                child: FloatingActionButton(
+                  elevation: 4,
+                  heroTag: null,
+                  mini: true,
+                  backgroundColor: Theme.of(context).accentColor,
+                  child: Icon(Icons.thumb_up),
+                  onPressed: () {},
+                ),
               ),
               FloatingActionButton(
                 elevation: 4,

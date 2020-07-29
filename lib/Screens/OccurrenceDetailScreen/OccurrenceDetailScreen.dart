@@ -65,7 +65,9 @@ class _OccurrenceDetailScreenState extends State<OccurrenceDetailScreen> {
             ListOccurrenceDetailScreen(
               occurrence: this._occurrence,
             ),
-            HeaderOccurrenceDetail(),
+            HeaderOccurrenceDetail(
+              views: this._occurrence.visualizacoes,
+            ),
           ],
         ),
       ),
