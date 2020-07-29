@@ -33,7 +33,7 @@ class OccurrenceController {
           .page(value: page)
           .result();
 
-      final iterable = await this._occurrenceService.retriveAll(
+      final iterable = await this._occurrenceService.retrieveAll(
             queryString: queryString,
           );
 
@@ -41,6 +41,19 @@ class OccurrenceController {
           iterable.map((x) => Occurrence.fromJson(x)).toList();
 
       return occurrenceList;
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  Future<Occurrence> getOccurrence({String uuid}) async {
+    try {
+      final map = await this._occurrenceService.retrieve(
+            uuid: uuid,
+          );
+
+      Occurrence occurrence = Occurrence.fromJson(map);
+      return occurrence;
     } catch (e) {
       rethrow;
     }

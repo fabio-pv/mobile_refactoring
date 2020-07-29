@@ -14,7 +14,7 @@ abstract class BaseService {
     this._apiClient = new ApiClient();
   }
 
-  Future<Iterable> retriveAll({
+  Future<Iterable> retrieveAll({
     String queryString = '',
   }) async {
     try {
@@ -28,6 +28,22 @@ abstract class BaseService {
       Iterable iterable = jsonDecode(response.body)['data'];
 
       return iterable;
+    } catch (e) {
+      rethrow;
+    }
+  }
+
+  Future<Map<String, dynamic>> retrieve({String uuid}) async {
+    try {
+      final response = await this._apiClient.doRequest(
+            endpoint: this.endpoint + '/$uuid',
+            method: ApiClientMethod.GET,
+          );
+
+      Map<String, dynamic> map = jsonDecode(response.body)['data'];
+
+      return map;
+
     } catch (e) {
       rethrow;
     }

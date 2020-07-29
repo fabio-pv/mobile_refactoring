@@ -18,10 +18,7 @@ class TitleHeaderMenu extends StatelessWidget {
           alignment: Alignment.center,
           child: Text(
             'Home',
-            style: TextStyle(
-              fontWeight: FontWeight.bold,
-              fontSize: 20,
-            ),
+            style: Theme.of(context).textTheme.headline6,
           ),
         ),
       ),

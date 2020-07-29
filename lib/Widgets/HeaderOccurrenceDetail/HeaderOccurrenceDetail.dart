@@ -10,6 +10,7 @@ class HeaderOccurrenceDetail extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           FloatingActionButton(
+            elevation: 4,
             onPressed: () {
               Navigator.pop(context);
             },
@@ -35,7 +36,10 @@ class HeaderOccurrenceDetail extends StatelessWidget {
                 right: 15,
               ),
               child: Center(
-                child: Text('Visualizações', style: Theme.of(context).textTheme.subtitle2,),
+                child: Text(
+                  'Visualizações',
+                  style: Theme.of(context).textTheme.subtitle2,
+                ),
               ),
             ),
           ),
@@ -52,6 +56,7 @@ class HeaderOccurrenceDetail extends StatelessWidget {
                 height: 10,
               ),
               FloatingActionButton(
+                elevation: 4,
                 heroTag: null,
                 mini: true,
                 backgroundColor: Theme.of(context).accentColor,
@@ -59,6 +64,7 @@ class HeaderOccurrenceDetail extends StatelessWidget {
                 onPressed: () {},
               ),
               FloatingActionButton(
+                elevation: 4,
                 heroTag: null,
                 mini: true,
                 backgroundColor: Theme.of(context).accentColor,
