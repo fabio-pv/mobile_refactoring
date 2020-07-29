@@ -10,7 +10,11 @@ class HeaderOccurrenceDetail extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(15.0),
+      padding: EdgeInsets.only(
+        left: 15.0,
+        right: 15.0,
+        top: 35,
+      ),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

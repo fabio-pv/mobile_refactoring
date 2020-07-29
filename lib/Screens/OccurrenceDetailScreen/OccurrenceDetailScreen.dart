@@ -58,18 +58,16 @@ class _OccurrenceDetailScreenState extends State<OccurrenceDetailScreen> {
       );
     }
     return Scaffold(
-      body: SafeArea(
-        child: Stack(
-          children: [
-            MapOccurrenceDetailScreen(),
-            ListOccurrenceDetailScreen(
-              occurrence: this._occurrence,
-            ),
-            HeaderOccurrenceDetail(
-              views: this._occurrence.visualizacoes,
-            ),
-          ],
-        ),
+      body: Stack(
+        children: [
+          MapOccurrenceDetailScreen(),
+          ListOccurrenceDetailScreen(
+            occurrence: this._occurrence,
+          ),
+          HeaderOccurrenceDetail(
+            views: this._occurrence.visualizacoes,
+          ),
+        ],
       ),
     );
   }
