@@ -1,8 +1,12 @@
-import 'package:fiscaliza_ja/Screens/OccurrenceDetailScreen/OccurrenceDetailScreen.dart';
+import 'package:fiscaliza_ja/Models/Occurrence.dart';
 import 'package:fiscaliza_ja/Screens/OccurrenceDetailScreen/ProtocolOccurrenceDetailScreen.dart';
 import 'package:flutter/material.dart';
 
 class ListOccurrenceDetailScreen extends StatelessWidget {
+  final Occurrence occurrence;
+
+  ListOccurrenceDetailScreen({@required this.occurrence});
+
   @override
   Widget build(BuildContext context) {
     return ListView(
@@ -12,7 +16,9 @@ class ListOccurrenceDetailScreen extends StatelessWidget {
         top: 100,
       ),
       children: [
-        ProtocolOccurrenceDetailScreen(),
+        ProtocolOccurrenceDetailScreen(
+          protocol: this.occurrence.codigo,
+        ),
       ],
     );
   }

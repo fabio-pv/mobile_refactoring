@@ -33,9 +33,13 @@ class _OccurrenceDetailScreenState extends State<OccurrenceDetailScreen> {
 
   Future<void> load() async {
     try {
-      this._occurrence = await this.occurrenceController.getOccurrence(
+      final occurrence = await this.occurrenceController.getOccurrence(
             uuid: widget.uuid,
           );
+
+      setState(() {
+        this._occurrence = occurrence;
+      });
     } catch (e) {
       print('error');
       print(e.toString());
@@ -44,12 +48,23 @@ class _OccurrenceDetailScreenState extends State<OccurrenceDetailScreen> {
 
   @override
   Widget build(BuildContext context) {
+    if (this._occurrence == null) {
+      return Scaffold(
+        body: SafeArea(
+          child: Center(
+            child: CircularProgressIndicator(),
+          ),
+        ),
+      );
+    }
     return Scaffold(
       body: SafeArea(
         child: Stack(
           children: [
             MapOccurrenceDetailScreen(),
-            ListOccurrenceDetailScreen(),
+            ListOccurrenceDetailScreen(
+              occurrence: this._occurrence,
+            ),
             HeaderOccurrenceDetail(),
           ],
         ),
