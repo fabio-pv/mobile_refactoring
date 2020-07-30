@@ -1,7 +1,9 @@
 import 'package:fiscaliza_ja/Models/Occurrence.dart';
+import 'package:fiscaliza_ja/Screens/OccurrenceDetailScreen/AddressOccurrenceDetailScreen.dart';
 import 'package:fiscaliza_ja/Screens/OccurrenceDetailScreen/ImageOccurrenceDetailScreen/ImageOccurrenceDetailScreen.dart';
 import 'package:fiscaliza_ja/Screens/OccurrenceDetailScreen/ProtocolOccurrenceDetailScreen.dart';
 import 'package:fiscaliza_ja/Screens/OccurrenceDetailScreen/TextOccurrenceDetailScreen.dart';
+import 'package:fiscaliza_ja/Screens/OccurrenceDetailScreen/TimelineOccurrenceDetailScreen/TimelineOccurrenceDetailScreen.dart';
 import 'package:fiscaliza_ja/Screens/OccurrenceDetailScreen/UserOccurrenceDetailScreen/UserOccurrenceDetailScreen.dart';
 import 'package:flutter/material.dart';
 
@@ -17,6 +19,7 @@ class ListOccurrenceDetailScreen extends StatelessWidget {
     return ListView(
       padding: EdgeInsets.only(
         top: 135,
+        bottom: 20,
       ),
       children: [
         ProtocolOccurrenceDetailScreen(
@@ -36,6 +39,16 @@ class ListOccurrenceDetailScreen extends StatelessWidget {
         TextOccurrenceDetailScreen(
           text: this.occurrence.texto,
         ),
+        SizedBox(
+          height: SIZED_BOX_DEFAULT,
+        ),
+        AddressOccurrenceDetailScreen(
+          occurrence: this.occurrence,
+        ),
+        SizedBox(
+          height: 10,
+        ),
+        TimelineOccurrenceDetailScreen(),
       ],
     );
   }

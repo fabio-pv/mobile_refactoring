@@ -3,11 +3,7 @@ import 'package:fiscaliza_ja/Screens/OccurrenceDetailScreen/Defaults/TitleCarDef
 import 'package:fiscaliza_ja/Screens/OccurrenceDetailScreen/ListOccurrenceDetailScreen.dart';
 import 'package:flutter/material.dart';
 
-class TextOccurrenceDetailScreen extends StatelessWidget {
-  final String text;
-
-  TextOccurrenceDetailScreen({@required this.text});
-
+class TimelineOccurrenceDetailScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -17,19 +13,10 @@ class TextOccurrenceDetailScreen extends StatelessWidget {
       ),
       child: CardDefaultOccurrenceDetailScreen(
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             TitleCarDefaultOccurrenceDetailScreen(
-              title: 'Relato',
-            ),
-            SizedBox(height: 10,),
-            Text(
-              this.text,
-              style: Theme
-                  .of(context)
-                  .textTheme
-                  .bodyText2,
-            ),
+              title: 'Timeline',
+            )
           ],
         ),
       ),
