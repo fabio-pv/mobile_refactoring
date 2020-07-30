@@ -29,23 +29,25 @@ class AddressOccurrenceDetailScreen extends StatelessWidget {
             ),
             TextTwoStylesWidget(
               textHighlighted: 'Bairro: ',
-              text: 'Santo Agostinho',
+              text: this.occurrence.district.nome,
             ),
             TextTwoStylesWidget(
               textHighlighted: 'Rua: ',
-              text: '1032',
+              text: this.occurrence.street.nome ??
+                  this.occurrence.ruaTemporaria ??
+                  'não informada',
             ),
             TextTwoStylesWidget(
               textHighlighted: 'Número: ',
-              text: '22',
+              text: this.occurrence.numero ?? 'Não informado',
             ),
             TextTwoStylesWidget(
               textHighlighted: 'Complemento: ',
-              text: 'Acho que isso é uma complemento',
+              text: this.occurrence.complemento ?? 'Não informado',
             ),
             TextTwoStylesWidget(
               textHighlighted: 'Ponto de Refẽrencia: ',
-              text: 'Proximo do completo que fica perto do final',
+              text: this.occurrence.pontoReferencia ?? 'Não informado',
             ),
           ],
         ),

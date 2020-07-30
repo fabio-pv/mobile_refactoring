@@ -1,5 +1,7 @@
+import 'package:fiscaliza_ja/Models/District.dart';
 import 'package:fiscaliza_ja/Models/OccurrenceFile.dart';
 import 'package:fiscaliza_ja/Models/OccurrenceStatus.dart';
+import 'package:fiscaliza_ja/Models/Street.dart';
 import 'package:fiscaliza_ja/Models/Subsecretary.dart';
 import 'package:fiscaliza_ja/Models/User.dart';
 
@@ -9,10 +11,16 @@ class Occurrence {
   String texto;
   String createdAt;
   int visualizacoes;
+  String ruaTemporaria;
+  String numero;
+  String complemento;
+  String pontoReferencia;
   OccurrenceStatus occurrenceStatus;
   List<OccurrenceFile> occurrenceFile;
   User user;
   Subsecretary subsecretary;
+  District district;
+  Street street;
 
   Occurrence({
     this.uuid,
@@ -24,6 +32,12 @@ class Occurrence {
     this.occurrenceFile,
     this.user,
     this.subsecretary,
+    this.district,
+    this.ruaTemporaria,
+    this.street,
+    this.numero,
+    this.complemento,
+    this.pontoReferencia,
   });
 
   Occurrence.fromJson(Map<String, dynamic> json) {
@@ -32,6 +46,10 @@ class Occurrence {
     texto = json['texto'];
     createdAt = json['created_at'];
     visualizacoes = json['visualizacoes'];
+    ruaTemporaria = json['rua_temporaria'];
+    numero = json['numero'];
+    complemento = json['complemento'];
+    pontoReferencia = json['ponto_referencia'];
     occurrenceStatus = json['occurrence_status'] != null
         ? new OccurrenceStatus.fromJson(json['occurrence_status'])
         : null;
@@ -45,6 +63,11 @@ class Occurrence {
     subsecretary = json['subsecretary'] != null
         ? new Subsecretary.fromJson(json['subsecretary'])
         : null;
+    district = json['district'] != null
+        ? new District.fromJson(json['district'])
+        : null;
+    street =
+        json['street'] != null ? new Street.fromJson(json['street']) : null;
   }
 
   Map<String, dynamic> toJson() {
@@ -54,6 +77,10 @@ class Occurrence {
     data['texto'] = this.texto;
     data['created_at'] = this.createdAt;
     data['visualizacoes'] = this.visualizacoes;
+    data['rua_temporaria'] = this.ruaTemporaria;
+    data['numero'] = this.numero;
+    data['complemento'] = this.complemento;
+    data['ponto_referencia'] = this.pontoReferencia;
     if (this.occurrenceStatus != null) {
       data['occurrence_status'] = this.occurrenceStatus.toJson();
     }
@@ -66,6 +93,12 @@ class Occurrence {
     }
     if (this.subsecretary != null) {
       data['subsecretary'] = this.subsecretary.toJson();
+    }
+    if (this.district != null) {
+      data['district'] = this.district.toJson();
+    }
+    if (this.street != null) {
+      data['street'] = this.street.toJson();
     }
     return data;
   }
