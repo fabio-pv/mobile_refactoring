@@ -1,4 +1,4 @@
-import 'package:fiscaliza_ja/Screens/OccurrenceDetailScreen/CardDefaultOccurrenceDetailScreen.dart';
+import 'package:fiscaliza_ja/Screens/OccurrenceDetailScreen/Defaults/CardDefaultOccurrenceDetailScreen.dart';
 import 'package:fiscaliza_ja/Widgets/IconText/IconText.dart';
 import 'package:flutter/material.dart';
 

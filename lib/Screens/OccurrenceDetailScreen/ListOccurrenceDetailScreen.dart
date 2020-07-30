@@ -1,6 +1,7 @@
 import 'package:fiscaliza_ja/Models/Occurrence.dart';
 import 'package:fiscaliza_ja/Screens/OccurrenceDetailScreen/ImageOccurrenceDetailScreen/ImageOccurrenceDetailScreen.dart';
 import 'package:fiscaliza_ja/Screens/OccurrenceDetailScreen/ProtocolOccurrenceDetailScreen.dart';
+import 'package:fiscaliza_ja/Screens/OccurrenceDetailScreen/TextOccurrenceDetailScreen.dart';
 import 'package:fiscaliza_ja/Screens/OccurrenceDetailScreen/UserOccurrenceDetailScreen/UserOccurrenceDetailScreen.dart';
 import 'package:flutter/material.dart';
 
@@ -29,6 +30,12 @@ class ListOccurrenceDetailScreen extends StatelessWidget {
           height: SIZED_BOX_DEFAULT,
         ),
         ImageOccurrenceDetailScreen(),
+        SizedBox(
+          height: SIZED_BOX_DEFAULT,
+        ),
+        TextOccurrenceDetailScreen(
+          text: this.occurrence.texto,
+        ),
       ],
     );
   }
