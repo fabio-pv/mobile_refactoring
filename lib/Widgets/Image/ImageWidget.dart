@@ -6,11 +6,13 @@ class ImageWidget extends StatelessWidget {
   final String url;
   final double width;
   final double height;
+  final double borderRadius;
 
   ImageWidget({
     @required this.url,
-    @required this.width,
+    this.width,
     @required this.height,
+    this.borderRadius,
   });
 
   @override
@@ -24,7 +26,9 @@ class ImageWidget extends StatelessWidget {
         height: this.height,
         decoration: BoxDecoration(
           shape: BoxShape.rectangle,
-          borderRadius: BorderRadius.circular(GenericPattern.BORDER_RADIUS),
+          borderRadius: BorderRadius.circular(
+            this.borderRadius ?? GenericPattern.BORDER_RADIUS,
+          ),
           image: DecorationImage(
             image: imageProvider,
             fit: BoxFit.cover,

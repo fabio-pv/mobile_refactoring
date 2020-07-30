@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 
 class ListOccurrenceDetailScreen extends StatelessWidget {
   static const double SIZED_BOX_DEFAULT = 15;
+  static const double PADDING_DEFAULT = 20;
   final Occurrence occurrence;
 
   ListOccurrenceDetailScreen({@required this.occurrence});
@@ -14,8 +15,6 @@ class ListOccurrenceDetailScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListView(
       padding: EdgeInsets.only(
-        left: 20,
-        right: 20,
         top: 135,
       ),
       children: [
