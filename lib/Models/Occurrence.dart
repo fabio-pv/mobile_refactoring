@@ -2,6 +2,7 @@ import 'package:fiscaliza_ja/Models/District.dart';
 import 'package:fiscaliza_ja/Models/OccurrenceFile.dart';
 import 'package:fiscaliza_ja/Models/OccurrenceHistory.dart';
 import 'package:fiscaliza_ja/Models/OccurrenceStatus.dart';
+import 'package:fiscaliza_ja/Models/Secretary.dart';
 import 'package:fiscaliza_ja/Models/Street.dart';
 import 'package:fiscaliza_ja/Models/Subsecretary.dart';
 import 'package:fiscaliza_ja/Models/User.dart';
@@ -20,6 +21,7 @@ class Occurrence {
   List<OccurrenceFile> occurrenceFile;
   User user;
   Subsecretary subsecretary;
+  Secretary secretary;
   District district;
   Street street;
   List<OccurrenceHistory> occurrenceHistory;
@@ -41,6 +43,7 @@ class Occurrence {
     this.complemento,
     this.pontoReferencia,
     this.occurrenceHistory,
+    this.secretary,
   });
 
   Occurrence.fromJson(Map<String, dynamic> json) {
@@ -77,6 +80,9 @@ class Occurrence {
         occurrenceHistory.add(new OccurrenceHistory.fromJson(v));
       });
     }
+    secretary = json['secretary'] != null
+        ? new Secretary.fromJson(json['secretary'])
+        : null;
   }
 
   Map<String, dynamic> toJson() {
@@ -112,6 +118,9 @@ class Occurrence {
     if (this.occurrenceHistory != null) {
       data['occurrence_historys'] =
           this.occurrenceHistory.map((v) => v.toJson()).toList();
+    }
+    if(this.secretary != null){
+      return data['secretary'] = this.secretary.toJson();
     }
     return data;
   }
