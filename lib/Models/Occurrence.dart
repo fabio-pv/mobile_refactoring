@@ -1,5 +1,6 @@
 import 'package:fiscaliza_ja/Models/District.dart';
 import 'package:fiscaliza_ja/Models/OccurrenceFile.dart';
+import 'package:fiscaliza_ja/Models/OccurrenceHistory.dart';
 import 'package:fiscaliza_ja/Models/OccurrenceStatus.dart';
 import 'package:fiscaliza_ja/Models/Street.dart';
 import 'package:fiscaliza_ja/Models/Subsecretary.dart';
@@ -21,6 +22,7 @@ class Occurrence {
   Subsecretary subsecretary;
   District district;
   Street street;
+  List<OccurrenceHistory> occurrenceHistory;
 
   Occurrence({
     this.uuid,
@@ -38,6 +40,7 @@ class Occurrence {
     this.numero,
     this.complemento,
     this.pontoReferencia,
+    this.occurrenceHistory,
   });
 
   Occurrence.fromJson(Map<String, dynamic> json) {
@@ -68,6 +71,12 @@ class Occurrence {
         : null;
     street =
         json['street'] != null ? new Street.fromJson(json['street']) : null;
+    if (json['occurrence_historys'] != null) {
+      occurrenceHistory = new List<OccurrenceHistory>();
+      json['occurrence_historys'].forEach((v) {
+        occurrenceHistory.add(new OccurrenceHistory.fromJson(v));
+      });
+    }
   }
 
   Map<String, dynamic> toJson() {
@@ -99,6 +108,10 @@ class Occurrence {
     }
     if (this.street != null) {
       data['street'] = this.street.toJson();
+    }
+    if (this.occurrenceHistory != null) {
+      data['occurrence_historys'] =
+          this.occurrenceHistory.map((v) => v.toJson()).toList();
     }
     return data;
   }

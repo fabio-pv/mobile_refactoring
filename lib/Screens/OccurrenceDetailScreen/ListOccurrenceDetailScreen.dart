@@ -50,7 +50,9 @@ class ListOccurrenceDetailScreen extends StatelessWidget {
         SizedBox(
           height: 10,
         ),
-        TimelineOccurrenceDetailScreen(),
+        TimelineOccurrenceDetailScreen(
+          occurrenceHistory: this.occurrence.occurrenceHistory,
+        ),
       ],
     );
   }
