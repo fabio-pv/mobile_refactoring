@@ -1,5 +1,7 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:fiscaliza_ja/Widgets/Image/ImageWidget.dart';
 import 'package:flutter/material.dart';
+import 'package:photo_view/photo_view.dart';
 
 class FullScreenImageScreen extends StatelessWidget {
   final String url;
@@ -9,10 +11,12 @@ class FullScreenImageScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: ImageWidget(
-        url: this.url,
-        height: MediaQuery.of(context).size.height,
-        borderRadius: 0,
+      body: Container(
+        child: PhotoView(
+          customSize: MediaQuery.of(context).size,
+          imageProvider: CachedNetworkImageProvider(this.url),
+          minScale: PhotoViewComputedScale.contained,
+        ),
       ),
     );
   }
