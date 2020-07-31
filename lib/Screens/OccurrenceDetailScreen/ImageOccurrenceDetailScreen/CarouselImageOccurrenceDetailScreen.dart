@@ -6,12 +6,15 @@ class CarouselImageOccurrenceDetailScreen extends StatelessWidget {
   static const double MAX_HEIGHT = 80;
 
   final List<String> files;
+  final Function({String url}) changeBigImageHandler;
 
-  CarouselImageOccurrenceDetailScreen({@required this.files});
+  CarouselImageOccurrenceDetailScreen({
+    @required this.files,
+    @required this.changeBigImageHandler,
+  });
 
   @override
   Widget build(BuildContext context) {
-    print(this.files.length);
     if (this.files.length <= 1) {
       return Container();
     }
@@ -26,6 +29,11 @@ class CarouselImageOccurrenceDetailScreen extends StatelessWidget {
         itemBuilder: (BuildContext context, int index) {
           return ElementCarouselImageOccurrenceDetailScreen(
             url: this.files[index],
+            onTap: (String url) {
+              this.changeBigImageHandler(
+                url: url,
+              );
+            },
           );
         },
       ),

@@ -6,14 +6,29 @@ import 'package:fiscaliza_ja/Widgets/Image/ImageWidget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 
-class ImageOccurrenceDetailScreen extends StatelessWidget {
+class ImageOccurrenceDetailScreen extends StatefulWidget {
   final Occurrence occurrence;
 
   ImageOccurrenceDetailScreen({@required this.occurrence});
 
   @override
+  _ImageOccurrenceDetailScreenState createState() =>
+      _ImageOccurrenceDetailScreenState();
+}
+
+class _ImageOccurrenceDetailScreenState
+    extends State<ImageOccurrenceDetailScreen> {
+  String _urlSelect;
+
+  void changeBigImage({String url}) {
+    setState(() {
+      this._urlSelect = url;
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
-    if (this.occurrence.occurrenceFile == null) {
+    if (this.widget.occurrence.occurrenceFile == null) {
       return Container();
     }
 
@@ -27,13 +42,15 @@ class ImageOccurrenceDetailScreen extends StatelessWidget {
           child: CardDefaultOccurrenceDetailScreen(
             padding: 0,
             child: ImageWidget(
-              url: this.occurrence.getImagens()[0],
+              url: this._urlSelect ?? this.widget.occurrence.getImagens()[0],
               height: 200,
+              fullScreen: true,
             ),
           ),
         ),
         CarouselImageOccurrenceDetailScreen(
-          files: this.occurrence.getImagens(),
+          files: this.widget.occurrence.getImagens(),
+          changeBigImageHandler: this.changeBigImage,
         ),
       ],
     );

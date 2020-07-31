@@ -6,14 +6,18 @@ import 'package:flutter/material.dart';
 
 class ElementCarouselImageOccurrenceDetailScreen extends StatelessWidget {
   final String url;
+  final OnTapCallBack onTap;
 
-  ElementCarouselImageOccurrenceDetailScreen({this.url});
+  ElementCarouselImageOccurrenceDetailScreen({
+    @required this.url,
+    @required this.onTap,
+  });
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        print('imagens click');
+        this.onTap(this.url);
       },
       child: CardDefaultOccurrenceDetailScreen(
         padding: 0,
@@ -27,3 +31,5 @@ class ElementCarouselImageOccurrenceDetailScreen extends StatelessWidget {
     );
   }
 }
+
+typedef OnTapCallBack = void Function(String url);
