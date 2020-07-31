@@ -5,4 +5,7 @@ class GenericPattern {
   static RoundedRectangleBorder CARD_BORDER_RADIUS = RoundedRectangleBorder(
     borderRadius: BorderRadius.circular(GenericPattern.BORDER_RADIUS),
   );
+  static RoundedRectangleBorder CARD_BORDER_RADIUS_HIGHT = RoundedRectangleBorder(
+    borderRadius: BorderRadius.circular(500),
+  );
 }

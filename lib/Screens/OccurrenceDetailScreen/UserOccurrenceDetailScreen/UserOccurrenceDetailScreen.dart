@@ -18,6 +18,7 @@ class UserOccurrenceDetailScreen extends StatelessWidget {
         children: [
           AvatarWidget(
             size: 80,
+            elevation: 3,
           ),
           SizedBox(
             width: 20,
