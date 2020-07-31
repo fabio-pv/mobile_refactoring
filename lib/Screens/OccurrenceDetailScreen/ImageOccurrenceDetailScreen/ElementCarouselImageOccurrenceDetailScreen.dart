@@ -11,13 +11,18 @@ class ElementCarouselImageOccurrenceDetailScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return CardDefaultOccurrenceDetailScreen(
-      padding: 0,
-      child: ImageWidget(
-        url: this.url,
-        width: CarouselImageOccurrenceDetailScreen.MAX_HEIGHT,
-        height: CarouselImageOccurrenceDetailScreen.MAX_HEIGHT,
-        borderRadius: 30,
+    return InkWell(
+      onTap: () {
+        print('imagens click');
+      },
+      child: CardDefaultOccurrenceDetailScreen(
+        padding: 0,
+        child: ImageWidget(
+          url: this.url,
+          width: CarouselImageOccurrenceDetailScreen.MAX_HEIGHT,
+          height: CarouselImageOccurrenceDetailScreen.MAX_HEIGHT,
+          borderRadius: 30,
+        ),
       ),
     );
   }

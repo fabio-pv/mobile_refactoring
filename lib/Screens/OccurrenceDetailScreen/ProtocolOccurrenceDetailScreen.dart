@@ -9,7 +9,6 @@ class ProtocolOccurrenceDetailScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print(this.protocol);
     return CardDefaultOccurrenceDetailScreen(
       width: 200,
       child: Center(

@@ -29,13 +29,13 @@ class AddressOccurrenceDetailScreen extends StatelessWidget {
             ),
             TextTwoStylesWidget(
               textHighlighted: 'Bairro: ',
-              text: this.occurrence.district.nome,
+              text: this.occurrence.street?.nome ?? 'Não informado',
             ),
             TextTwoStylesWidget(
               textHighlighted: 'Rua: ',
-              text: this.occurrence.street.nome ??
+              text: this.occurrence.street?.nome ??
                   this.occurrence.ruaTemporaria ??
-                  'não informada',
+                  'Não Informado',
             ),
             TextTwoStylesWidget(
               textHighlighted: 'Número: ',
