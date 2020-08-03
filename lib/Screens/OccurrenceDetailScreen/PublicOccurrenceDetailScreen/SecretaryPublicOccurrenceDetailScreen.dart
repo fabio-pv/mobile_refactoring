@@ -4,6 +4,7 @@ import 'package:fiscaliza_ja/Screens/OccurrenceDetailScreen/Defaults/CardDefault
 import 'package:fiscaliza_ja/Screens/OccurrenceDetailScreen/Defaults/TitleCarDefaultOccurrenceDetailScreen.dart';
 import 'package:fiscaliza_ja/Screens/OccurrenceDetailScreen/ListOccurrenceDetailScreen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 
 class SecretaryPublicOccurrenceDetailScreen extends StatelessWidget {
   final Secretary secretary;
@@ -38,6 +39,19 @@ class SecretaryPublicOccurrenceDetailScreen extends StatelessWidget {
               this.secretary.descricao,
               style: Theme.of(context).textTheme.caption,
               textAlign: TextAlign.center,
+            ),
+            SizedBox(
+              height: 10,
+            ),
+            RatingBar(
+              onRatingUpdate: null,
+              initialRating: 4,
+              itemCount: 5,
+              itemSize: 20,
+              itemBuilder: (BuildContext context, _) => Icon(
+                Icons.star,
+                color: Colors.amber,
+              ),
             ),
           ],
         ),
