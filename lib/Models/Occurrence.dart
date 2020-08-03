@@ -1,5 +1,6 @@
 import 'package:fiscaliza_ja/Models/District.dart';
 import 'package:fiscaliza_ja/Models/OccurrenceAction.dart';
+import 'package:fiscaliza_ja/Models/OccurrenceComment.dart';
 import 'package:fiscaliza_ja/Models/OccurrenceFile.dart';
 import 'package:fiscaliza_ja/Models/OccurrenceHistory.dart';
 import 'package:fiscaliza_ja/Models/OccurrenceStatus.dart';
@@ -27,6 +28,7 @@ class Occurrence {
   List<OccurrenceHistory> occurrenceHistory;
   List<OccurrenceFile> occurrenceFile;
   List<OccurrenceAction> occurrenceAction;
+  List<OccurrenceComment> occurrenceComment;
 
   Occurrence({
     this.uuid,
@@ -47,6 +49,7 @@ class Occurrence {
     this.occurrenceHistory,
     this.secretary,
     this.occurrenceAction,
+    this.occurrenceComment,
   });
 
   Occurrence.fromJson(Map<String, dynamic> json) {
@@ -62,12 +65,6 @@ class Occurrence {
     occurrenceStatus = json['occurrence_status'] != null
         ? new OccurrenceStatus.fromJson(json['occurrence_status'])
         : null;
-    if (json['occurrence_file'] != null) {
-      occurrenceFile = new List<OccurrenceFile>();
-      json['occurrence_file'].forEach((v) {
-        occurrenceFile.add(new OccurrenceFile.fromJson(v));
-      });
-    }
     user = json['user'] != null ? new User.fromJson(json['user']) : null;
     subsecretary = json['subsecretary'] != null
         ? new Subsecretary.fromJson(json['subsecretary'])
@@ -80,6 +77,12 @@ class Occurrence {
     secretary = json['secretary'] != null
         ? new Secretary.fromJson(json['secretary'])
         : null;
+    if (json['occurrence_file'] != null) {
+      occurrenceFile = new List<OccurrenceFile>();
+      json['occurrence_file'].forEach((v) {
+        occurrenceFile.add(new OccurrenceFile.fromJson(v));
+      });
+    }
     if (json['occurrence_historys'] != null) {
       occurrenceHistory = new List<OccurrenceHistory>();
       json['occurrence_historys'].forEach((v) {
@@ -90,6 +93,12 @@ class Occurrence {
       occurrenceAction = new List<OccurrenceAction>();
       json['occurrence_actions'].forEach((v) {
         occurrenceAction.add(new OccurrenceAction.fromJson(v));
+      });
+    }
+    if (json['occurrence_comments'] != null) {
+      occurrenceComment = new List<OccurrenceComment>();
+      json['occurrence_comments'].forEach((v) {
+        occurrenceComment.add(new OccurrenceComment.fromJson(v));
       });
     }
   }
@@ -108,10 +117,6 @@ class Occurrence {
     if (this.occurrenceStatus != null) {
       data['occurrence_status'] = this.occurrenceStatus.toJson();
     }
-    if (this.occurrenceFile != null) {
-      data['occurrence_file'] =
-          this.occurrenceFile.map((v) => v.toJson()).toList();
-    }
     if (this.user != null) {
       data['user'] = this.user.toJson();
     }
@@ -127,6 +132,10 @@ class Occurrence {
     if (this.secretary != null) {
       return data['secretary'] = this.secretary.toJson();
     }
+    if (this.occurrenceFile != null) {
+      data['occurrence_file'] =
+          this.occurrenceFile.map((v) => v.toJson()).toList();
+    }
     if (this.occurrenceHistory != null) {
       data['occurrence_historys'] =
           this.occurrenceHistory.map((v) => v.toJson()).toList();
@@ -134,6 +143,10 @@ class Occurrence {
     if (this.occurrenceAction != null) {
       data['occurrence_actions'] =
           this.occurrenceAction.map((v) => v.toJson()).toList();
+    }
+    if (this.occurrenceComment != null) {
+      data['occurrence_comments'] =
+          this.occurrenceComment.map((v) => v.toJson()).toList();
     }
     return data;
   }

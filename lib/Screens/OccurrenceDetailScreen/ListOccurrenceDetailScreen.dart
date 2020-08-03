@@ -1,5 +1,6 @@
 import 'package:fiscaliza_ja/Models/Occurrence.dart';
 import 'package:fiscaliza_ja/Screens/OccurrenceDetailScreen/AddressOccurrenceDetailScreen.dart';
+import 'package:fiscaliza_ja/Screens/OccurrenceDetailScreen/CommentOccurrenceDetailScreen/CommentOccurrenceDetailScreen.dart';
 import 'package:fiscaliza_ja/Screens/OccurrenceDetailScreen/ImageOccurrenceDetailScreen/ImageOccurrenceDetailScreen.dart';
 import 'package:fiscaliza_ja/Screens/OccurrenceDetailScreen/ProtocolOccurrenceDetailScreen.dart';
 import 'package:fiscaliza_ja/Screens/OccurrenceDetailScreen/PublicOccurrenceDetailScreen/PublicOccurrenceDetailScreen.dart';
@@ -61,6 +62,12 @@ class ListOccurrenceDetailScreen extends StatelessWidget {
           secretary: this.occurrence.secretary,
           subsecretary: this.occurrence.subsecretary,
           occurrenceAction: this.occurrence.occurrenceAction,
+        ),
+        SizedBox(
+          height: 10,
+        ),
+        CommentOccurrenceDetailScreen(
+          occurrenceComments: this.occurrence.occurrenceComment,
         ),
       ],
     );
