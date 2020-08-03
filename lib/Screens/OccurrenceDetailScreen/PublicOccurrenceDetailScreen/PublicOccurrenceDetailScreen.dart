@@ -1,3 +1,4 @@
+import 'package:fiscaliza_ja/Models/OccurrenceAction.dart';
 import 'package:fiscaliza_ja/Models/Secretary.dart';
 import 'package:fiscaliza_ja/Models/Subsecretary.dart';
 import 'package:fiscaliza_ja/Screens/OccurrenceDetailScreen/Defaults/CardDefaultOccurrenceDetailScreen.dart';
@@ -10,10 +11,12 @@ import 'package:flutter/painting.dart';
 class PublicOccurrenceDetailScreen extends StatelessWidget {
   final Subsecretary subsecretary;
   final Secretary secretary;
+  final List<OccurrenceAction> occurrenceAction;
 
   PublicOccurrenceDetailScreen({
     @required this.subsecretary,
     @required this.secretary,
+    @required this.occurrenceAction,
   });
 
   @override
@@ -32,6 +35,7 @@ class PublicOccurrenceDetailScreen extends StatelessWidget {
             ),
             SubsecretaryActionsPublicOccurrenceDetailScreen(
               subsecretary: this.subsecretary,
+              occurrenceAction: this.occurrenceAction,
             ),
           ],
         ),

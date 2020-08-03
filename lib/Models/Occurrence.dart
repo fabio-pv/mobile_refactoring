@@ -1,4 +1,5 @@
 import 'package:fiscaliza_ja/Models/District.dart';
+import 'package:fiscaliza_ja/Models/OccurrenceAction.dart';
 import 'package:fiscaliza_ja/Models/OccurrenceFile.dart';
 import 'package:fiscaliza_ja/Models/OccurrenceHistory.dart';
 import 'package:fiscaliza_ja/Models/OccurrenceStatus.dart';
@@ -18,13 +19,14 @@ class Occurrence {
   String complemento;
   String pontoReferencia;
   OccurrenceStatus occurrenceStatus;
-  List<OccurrenceFile> occurrenceFile;
   User user;
   Subsecretary subsecretary;
   Secretary secretary;
   District district;
   Street street;
   List<OccurrenceHistory> occurrenceHistory;
+  List<OccurrenceFile> occurrenceFile;
+  List<OccurrenceAction> occurrenceAction;
 
   Occurrence({
     this.uuid,
@@ -44,6 +46,7 @@ class Occurrence {
     this.pontoReferencia,
     this.occurrenceHistory,
     this.secretary,
+    this.occurrenceAction,
   });
 
   Occurrence.fromJson(Map<String, dynamic> json) {
@@ -74,15 +77,21 @@ class Occurrence {
         : null;
     street =
         json['street'] != null ? new Street.fromJson(json['street']) : null;
+    secretary = json['secretary'] != null
+        ? new Secretary.fromJson(json['secretary'])
+        : null;
     if (json['occurrence_historys'] != null) {
       occurrenceHistory = new List<OccurrenceHistory>();
       json['occurrence_historys'].forEach((v) {
         occurrenceHistory.add(new OccurrenceHistory.fromJson(v));
       });
     }
-    secretary = json['secretary'] != null
-        ? new Secretary.fromJson(json['secretary'])
-        : null;
+    if (json['occurrence_actions'] != null) {
+      occurrenceAction = new List<OccurrenceAction>();
+      json['occurrence_actions'].forEach((v) {
+        occurrenceAction.add(new OccurrenceAction.fromJson(v));
+      });
+    }
   }
 
   Map<String, dynamic> toJson() {
@@ -115,12 +124,16 @@ class Occurrence {
     if (this.street != null) {
       data['street'] = this.street.toJson();
     }
+    if (this.secretary != null) {
+      return data['secretary'] = this.secretary.toJson();
+    }
     if (this.occurrenceHistory != null) {
       data['occurrence_historys'] =
           this.occurrenceHistory.map((v) => v.toJson()).toList();
     }
-    if(this.secretary != null){
-      return data['secretary'] = this.secretary.toJson();
+    if (this.occurrenceAction != null) {
+      data['occurrence_actions'] =
+          this.occurrenceAction.map((v) => v.toJson()).toList();
     }
     return data;
   }

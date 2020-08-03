@@ -1,12 +1,16 @@
+import 'package:fiscaliza_ja/Models/OccurrenceAction.dart';
 import 'package:fiscaliza_ja/Models/Subsecretary.dart';
+import 'package:fiscaliza_ja/Screens/OccurrenceDetailScreen/PublicOccurrenceDetailScreen/ListActionPublicOccurrenceDetailScreen.dart';
 import 'package:fiscaliza_ja/Widgets/TextTwoStyles/TextTwoStylescWidget.dart';
 import 'package:flutter/material.dart';
 
 class SubsecretaryActionsPublicOccurrenceDetailScreen extends StatelessWidget {
   final Subsecretary subsecretary;
+  final List<OccurrenceAction> occurrenceAction;
 
   SubsecretaryActionsPublicOccurrenceDetailScreen({
     @required this.subsecretary,
+    @required this.occurrenceAction,
   });
 
   @override
@@ -27,6 +31,9 @@ class SubsecretaryActionsPublicOccurrenceDetailScreen extends StatelessWidget {
           Align(
             alignment: Alignment.centerLeft,
             child: Text('Ações a serem tomadas:'),
+          ),
+          ListActionPublicOccurrenceDetailScreen(
+            occurrenceAction: this.occurrenceAction,
           ),
         ],
       ),

@@ -60,6 +60,7 @@ class ListOccurrenceDetailScreen extends StatelessWidget {
         PublicOccurrenceDetailScreen(
           secretary: this.occurrence.secretary,
           subsecretary: this.occurrence.subsecretary,
+          occurrenceAction: this.occurrence.occurrenceAction,
         ),
       ],
     );
