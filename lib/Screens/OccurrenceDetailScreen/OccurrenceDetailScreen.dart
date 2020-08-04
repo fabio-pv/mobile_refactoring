@@ -1,7 +1,7 @@
 import 'package:fiscaliza_ja/Controllers/OccurrenceController.dart';
 import 'package:fiscaliza_ja/Models/Occurrence.dart';
 import 'package:fiscaliza_ja/Screens/OccurrenceDetailScreen/ListOccurrenceDetailScreen.dart';
-import 'package:fiscaliza_ja/Screens/OccurrenceDetailScreen/MapOccurrenceDetailScreen.dart';
+import 'package:fiscaliza_ja/Screens/OccurrenceDetailScreen/MapOccurrenceDetailScreen/MapOccurrenceDetailScreen.dart';
 import 'package:fiscaliza_ja/Widgets/HeaderOccurrenceDetail/HeaderOccurrenceDetail.dart';
 import 'package:flutter/material.dart';
 
@@ -53,7 +53,6 @@ class _OccurrenceDetailScreenState extends State<OccurrenceDetailScreen> {
     });
 
     return this.showList;
-
   }
 
   @override
@@ -70,7 +69,11 @@ class _OccurrenceDetailScreenState extends State<OccurrenceDetailScreen> {
     return Scaffold(
       body: Stack(
         children: [
-          MapOccurrenceDetailScreen(),
+          MapOccurrenceDetailScreen(
+            showList: this.showList,
+            latitude: this._occurrence.latitude,
+            longitude: this._occurrence.longitude,
+          ),
           ListOccurrenceDetailScreen(
             occurrence: this._occurrence,
             showList: this.showList,
