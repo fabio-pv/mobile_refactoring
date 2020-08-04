@@ -38,7 +38,9 @@ class ListOccurrenceDetailScreen extends StatelessWidget {
         SizedBox(
           height: SIZED_BOX_DEFAULT,
         ),
-        UserOccurrenceDetailScreen(),
+        UserOccurrenceDetailScreen(
+          user: this.occurrence.user,
+        ),
         SizedBox(
           height: SIZED_BOX_DEFAULT,
         ),

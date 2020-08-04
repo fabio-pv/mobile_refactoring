@@ -1,14 +1,48 @@
 import 'package:fiscaliza_ja/Patterns/GenericPattern.dart';
+import 'package:fiscaliza_ja/Widgets/Avatar/AlphabetForColor.dart';
 import 'package:flutter/material.dart';
 
 class AvatarWidget extends StatelessWidget {
   final double size;
   final double elevation;
+  final String name;
+  final bool anonymous;
 
   AvatarWidget({
     this.size = 130,
     this.elevation = 0,
+    this.name,
+    this.anonymous = false,
   });
+
+  Widget _childType() {
+    if (this.anonymous == true) {
+      return this._anonymous();
+    }
+    return this._authType();
+  }
+
+  Widget _authType() {
+    return Text(
+      this._firstCharacter(),
+      style: TextStyle(
+        fontSize: 40,
+        color: Colors.white,
+      ),
+    );
+  }
+
+  Widget _anonymous() {
+    return Icon(
+      Icons.record_voice_over,
+      size: 35,
+      color: Colors.white,
+    );
+  }
+
+  String _firstCharacter() {
+    return this.name.substring(0, 1).toUpperCase();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -19,17 +53,13 @@ class AvatarWidget extends StatelessWidget {
         height: this.size,
         width: this.size,
         decoration: BoxDecoration(
-          color: Colors.blueAccent,
+          color: AlphabetForColor.getColor(
+            title: this.name,
+          ),
           borderRadius: BorderRadius.circular(100),
         ),
         child: Center(
-          child: Text(
-            'F',
-            style: TextStyle(
-              fontSize: 50,
-              color: Colors.white,
-            ),
-          ),
+          child: this._childType(),
         ),
       ),
     );
