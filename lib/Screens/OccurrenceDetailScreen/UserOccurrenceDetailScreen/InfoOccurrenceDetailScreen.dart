@@ -1,8 +1,13 @@
+import 'package:fiscaliza_ja/Models/User.dart';
 import 'package:fiscaliza_ja/Screens/OccurrenceDetailScreen/Defaults/CardDefaultOccurrenceDetailScreen.dart';
 import 'package:fiscaliza_ja/Widgets/IconText/IconText.dart';
 import 'package:flutter/material.dart';
 
 class InfoOccurrenceDetailScreen extends StatelessWidget {
+  final User user;
+
+  InfoOccurrenceDetailScreen({@required this.user});
+
   @override
   Widget build(BuildContext context) {
     return Expanded(
@@ -10,8 +15,17 @@ class InfoOccurrenceDetailScreen extends StatelessWidget {
       child: CardDefaultOccurrenceDetailScreen(
         child: Column(
           children: [
-            Text('Fabio pv'),
-            SizedBox(height: 15,),
+            Center(
+              child: Text(
+                this.user.name,
+                overflow: TextOverflow.ellipsis,
+                maxLines: 1,
+                textAlign: TextAlign.center,
+              ),
+            ),
+            SizedBox(
+              height: 5,
+            ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [

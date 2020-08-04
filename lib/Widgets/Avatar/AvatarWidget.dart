@@ -1,5 +1,6 @@
 import 'package:fiscaliza_ja/Patterns/GenericPattern.dart';
 import 'package:fiscaliza_ja/Widgets/Avatar/AlphabetForColor.dart';
+import 'package:fiscaliza_ja/Widgets/Image/ImageWidget.dart';
 import 'package:flutter/material.dart';
 
 class AvatarWidget extends StatelessWidget {
@@ -7,18 +8,25 @@ class AvatarWidget extends StatelessWidget {
   final double elevation;
   final String name;
   final bool anonymous;
+  final String url;
 
   AvatarWidget({
     this.size = 130,
     this.elevation = 0,
     this.name,
     this.anonymous = false,
+    this.url,
   });
 
   Widget _childType() {
     if (this.anonymous == true) {
       return this._anonymous();
     }
+
+    if(this.url != null){
+      return this._authWithUrlType();
+    }
+
     return this._authType();
   }
 
@@ -29,6 +37,15 @@ class AvatarWidget extends StatelessWidget {
         fontSize: 40,
         color: Colors.white,
       ),
+    );
+  }
+
+  Widget _authWithUrlType() {
+    return ImageWidget(
+      url: this.url,
+      height: null,
+      fullScreen: true,
+      fullScreenOnTap: true,
     );
   }
 

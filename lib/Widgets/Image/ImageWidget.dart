@@ -10,6 +10,7 @@ class ImageWidget extends StatelessWidget {
   final double height;
   final double borderRadius;
   final bool fullScreen;
+  final bool fullScreenOnTap;
 
   ImageWidget({
     @required this.url,
@@ -17,6 +18,7 @@ class ImageWidget extends StatelessWidget {
     @required this.height,
     this.borderRadius,
     this.fullScreen = false,
+    this.fullScreenOnTap = false,
   });
 
   BuildContext contextAux;
@@ -24,6 +26,22 @@ class ImageWidget extends StatelessWidget {
   Widget fullScreenWidget() {
     if (this.fullScreen == false) {
       return Container();
+    }
+
+    if (this.fullScreenOnTap == true) {
+      return InkWell(
+        borderRadius: BorderRadius.circular(GenericPattern.BORDER_RADIUS),
+        onTap: () {
+          Navigator.push(
+            this.contextAux,
+            MaterialPageRoute(
+              builder: (BuildContext context) => FullScreenImageScreen(
+                url: this.url,
+              ),
+            ),
+          );
+        },
+      );
     }
 
     return Align(

@@ -27,14 +27,17 @@ class UserOccurrenceDetailScreen extends StatelessWidget {
       child: Row(
         children: [
           AvatarWidget(
-            size: 80,
+            size: 70,
             elevation: 3,
             name: this.user.name,
+            url: this.user.foto,
           ),
           SizedBox(
             width: 20,
           ),
-          InfoOccurrenceDetailScreen(),
+          InfoOccurrenceDetailScreen(
+            user: this.user,
+          ),
         ],
       ),
     );

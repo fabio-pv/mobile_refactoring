@@ -14,7 +14,7 @@ class AnonymousOccurrenceDetailScreen extends StatelessWidget {
       child: Row(
         children: [
           AvatarWidget(
-            size: 80,
+            size: 70,
             elevation: 3,
             anonymous: true,
           ),
@@ -26,7 +26,7 @@ class AnonymousOccurrenceDetailScreen extends StatelessWidget {
             child: CardDefaultOccurrenceDetailScreen(
               color: Colors.grey[800],
               child: Container(
-                height: 40,
+                height: 35,
                 child: Center(
                   child: Text(
                     'Ocorrencia anonima',
