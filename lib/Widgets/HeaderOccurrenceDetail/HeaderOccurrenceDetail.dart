@@ -2,10 +2,58 @@ import 'package:badges/badges.dart';
 import 'package:fiscaliza_ja/Patterns/GenericPattern.dart';
 import 'package:flutter/material.dart';
 
-class HeaderOccurrenceDetail extends StatelessWidget {
+class HeaderOccurrenceDetail extends StatefulWidget {
   final int views;
+  final Function showListHandler;
 
-  HeaderOccurrenceDetail({@required this.views});
+  HeaderOccurrenceDetail({
+    @required this.views,
+    @required this.showListHandler,
+  });
+
+  @override
+  _HeaderOccurrenceDetailState createState() => _HeaderOccurrenceDetailState();
+}
+
+class _HeaderOccurrenceDetailState extends State<HeaderOccurrenceDetail>
+    with SingleTickerProviderStateMixin {
+  final Tween<double> turnsTween = Tween<double>(begin: 1, end: 2);
+
+  AnimationController _controller;
+
+  List<IconData> iconShowList = [
+    Icons.map,
+    Icons.layers,
+  ];
+
+  int iconShow = 0;
+
+  @override
+  void initState() {
+    _controller = AnimationController(
+      vsync: this,
+      duration: Duration(milliseconds: 500),
+    );
+    super.initState();
+  }
+
+  void showListHandlerIntercept() {
+    final result = this.widget.showListHandler();
+
+    this.doShowListAnimation(value: result);
+    setState(() {
+      this.iconShow = (result == true ? 0 : 1);
+    });
+  }
+
+  void doShowListAnimation({bool value}) {
+    if (value == true) {
+      this._controller.forward();
+      return;
+    }
+
+    this._controller.reverse();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -46,20 +94,28 @@ class HeaderOccurrenceDetail extends StatelessWidget {
               ),
               child: Center(
                 child: Text(
-                  this.views.toString() + ' Visualizações',
+                  this.widget.views.toString() + ' Visualizações',
                   style: Theme.of(context).textTheme.subtitle2,
                 ),
               ),
             ),
           ),
-          Expanded(flex: 1, child: Container()),
+          Expanded(
+            flex: 1,
+            child: Container(),
+          ),
           Column(
             children: [
               FloatingActionButton(
                 heroTag: null,
                 backgroundColor: Theme.of(context).primaryColor,
-                child: Icon(Icons.map),
-                onPressed: () {},
+                child: RotationTransition(
+                  turns: this.turnsTween.animate(this._controller),
+                  child: Icon(
+                    this.iconShowList[this.iconShow],
+                  ),
+                ),
+                onPressed: this.showListHandlerIntercept,
               ),
               SizedBox(
                 height: 15,

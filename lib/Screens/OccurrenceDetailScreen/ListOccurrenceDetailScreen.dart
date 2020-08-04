@@ -13,11 +13,19 @@ class ListOccurrenceDetailScreen extends StatelessWidget {
   static const double SIZED_BOX_DEFAULT = 15;
   static const double PADDING_DEFAULT = 20;
   final Occurrence occurrence;
+  final bool showList;
 
-  ListOccurrenceDetailScreen({@required this.occurrence});
+  ListOccurrenceDetailScreen({
+    @required this.occurrence,
+    @required this.showList,
+  });
 
   @override
   Widget build(BuildContext context) {
+    if(this.showList == false){
+      return Container();
+    }
+
     return ListView(
       padding: EdgeInsets.only(
         top: 135,

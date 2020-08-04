@@ -24,6 +24,7 @@ class _OccurrenceDetailScreenState extends State<OccurrenceDetailScreen> {
   _OccurrenceDetailScreenState({this.occurrenceController});
 
   Occurrence _occurrence;
+  bool showList = true;
 
   @override
   void initState() {
@@ -46,6 +47,15 @@ class _OccurrenceDetailScreenState extends State<OccurrenceDetailScreen> {
     }
   }
 
+  bool showListController() {
+    setState(() {
+      this.showList = !this.showList;
+    });
+
+    return this.showList;
+
+  }
+
   @override
   Widget build(BuildContext context) {
     if (this._occurrence == null) {
@@ -63,9 +73,11 @@ class _OccurrenceDetailScreenState extends State<OccurrenceDetailScreen> {
           MapOccurrenceDetailScreen(),
           ListOccurrenceDetailScreen(
             occurrence: this._occurrence,
+            showList: this.showList,
           ),
           HeaderOccurrenceDetail(
             views: this._occurrence.visualizacoes,
+            showListHandler: this.showListController,
           ),
         ],
       ),
