@@ -1,14 +1,19 @@
 import 'package:badges/badges.dart';
 import 'package:fiscaliza_ja/Patterns/GenericPattern.dart';
+import 'package:fiscaliza_ja/Screens/OccurrenceDetailScreen/MapOccurrenceDetailScreen/DefaultMapOccurrenceDetailScreen.dart';
 import 'package:flutter/material.dart';
 
 class HeaderOccurrenceDetail extends StatefulWidget {
   final int views;
+  final double latitude;
+  final double longitude;
   final Function showListHandler;
 
   HeaderOccurrenceDetail({
     @required this.views,
     @required this.showListHandler,
+    @required this.latitude,
+    @required this.longitude,
   });
 
   @override
@@ -19,11 +24,13 @@ class _HeaderOccurrenceDetailState extends State<HeaderOccurrenceDetail>
     with SingleTickerProviderStateMixin {
   final Tween<double> turnsTween = Tween<double>(begin: 1, end: 2);
 
+  BuildContext _contextAux;
   AnimationController _controller;
 
   List<IconData> iconShowList = [
     Icons.map,
     Icons.layers,
+    Icons.location_off,
   ];
 
   int iconShow = 0;
@@ -38,6 +45,17 @@ class _HeaderOccurrenceDetailState extends State<HeaderOccurrenceDetail>
   }
 
   void showListHandlerIntercept() {
+    if (widget.latitude == null && widget.longitude == null) {
+      this.doShowListAnimation(value: false);
+      this.showMessage(
+        message: DefaultMapOccurrenceDetailScreen.OCCURRENCE_WITHOUT_POSITION,
+      );
+      setState(() {
+        this.iconShow = 2;
+      });
+      return;
+    }
+
     final result = this.widget.showListHandler();
 
     this.doShowListAnimation(value: result);
@@ -51,12 +69,24 @@ class _HeaderOccurrenceDetailState extends State<HeaderOccurrenceDetail>
       this._controller.forward();
       return;
     }
-
     this._controller.reverse();
+  }
+
+  void showMessage({@required String message}) {
+    final snackbar = SnackBar(
+      content: Text(message),
+      action: SnackBarAction(
+        label: 'Fechar',
+        onPressed: () {},
+      ),
+    );
+
+    Scaffold.of(this._contextAux).showSnackBar(snackbar);
   }
 
   @override
   Widget build(BuildContext context) {
+    this._contextAux = context;
     return Container(
       padding: EdgeInsets.only(
         left: 15.0,

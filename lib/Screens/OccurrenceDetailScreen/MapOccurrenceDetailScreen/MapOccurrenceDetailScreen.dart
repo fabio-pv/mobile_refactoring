@@ -44,7 +44,7 @@ class _MapOccurrenceDetailScreenState extends State<MapOccurrenceDetailScreen> {
     final GoogleMapController controller = await this._controller.future;
     controller.animateCamera(
       CameraUpdate.newCameraPosition(
-          DefaultMapOccurrenceDetailScreen.cameraDefault),
+          DefaultMapOccurrenceDetailScreen.CAMERA_DEFAULT),
     );
   }
 
@@ -81,7 +81,7 @@ class _MapOccurrenceDetailScreenState extends State<MapOccurrenceDetailScreen> {
   @override
   Widget build(BuildContext context) {
     return GoogleMap(
-      initialCameraPosition: DefaultMapOccurrenceDetailScreen.cameraDefault,
+      initialCameraPosition: DefaultMapOccurrenceDetailScreen.CAMERA_DEFAULT,
       zoomControlsEnabled: false,
       markers: Set<Marker>.of(this._markers.values),
       onMapCreated: (GoogleMapController controller) {
