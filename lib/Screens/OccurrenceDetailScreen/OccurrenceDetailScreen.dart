@@ -80,6 +80,7 @@ class _OccurrenceDetailScreenState extends State<OccurrenceDetailScreen> {
           ),
           HeaderOccurrenceDetail(
             views: this._occurrence.visualizacoes,
+            likes: this._occurrence.occurrenceLikesTotal,
             showListHandler: this.showListController,
             latitude: this._occurrence.latitude,
             longitude: this._occurrence.longitude,

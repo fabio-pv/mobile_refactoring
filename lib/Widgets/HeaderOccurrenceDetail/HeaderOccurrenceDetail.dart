@@ -8,12 +8,14 @@ class HeaderOccurrenceDetail extends StatefulWidget {
   final double latitude;
   final double longitude;
   final Function showListHandler;
+  final int likes;
 
   HeaderOccurrenceDetail({
     @required this.views,
     @required this.showListHandler,
     @required this.latitude,
     @required this.longitude,
+    @required this.likes,
   });
 
   @override
@@ -155,7 +157,7 @@ class _HeaderOccurrenceDetailState extends State<HeaderOccurrenceDetail>
                 shape: BadgeShape.square,
                 borderRadius: 20,
                 badgeContent: Text(
-                  '666',
+                  widget.likes.toString(),
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 11,

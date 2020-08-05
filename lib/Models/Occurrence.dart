@@ -21,6 +21,7 @@ class Occurrence {
   String pontoReferencia;
   double latitude;
   double longitude;
+  int occurrenceLikesTotal;
   OccurrenceStatus occurrenceStatus;
   User user;
   Subsecretary subsecretary;
@@ -54,6 +55,7 @@ class Occurrence {
     this.occurrenceComment,
     this.latitude,
     this.longitude,
+    this.occurrenceLikesTotal,
   });
 
   Occurrence.fromJson(Map<String, dynamic> json) {
@@ -68,6 +70,7 @@ class Occurrence {
     pontoReferencia = json['ponto_referencia'];
     latitude = json['latitude'];
     longitude = json['longitude'];
+    occurrenceLikesTotal = json['occurrence_likes_total'];
     occurrenceStatus = json['occurrence_status'] != null
         ? new OccurrenceStatus.fromJson(json['occurrence_status'])
         : null;
@@ -122,6 +125,7 @@ class Occurrence {
     data['ponto_referencia'] = this.pontoReferencia;
     data['latitude'] = this.latitude;
     data['longitude'] = this.longitude;
+    data['occurrence_likes_total'] = this.occurrenceLikesTotal;
     if (this.occurrenceStatus != null) {
       data['occurrence_status'] = this.occurrenceStatus.toJson();
     }
