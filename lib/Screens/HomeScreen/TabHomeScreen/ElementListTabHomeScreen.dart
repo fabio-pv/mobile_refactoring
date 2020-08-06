@@ -1,15 +1,12 @@
+import 'package:fiscaliza_ja/Models/OccurrenceFilter.dart';
 import 'package:fiscaliza_ja/Patterns/GenericPattern.dart';
 import 'package:fiscaliza_ja/Widgets/IconText/IconText.dart';
 import 'package:flutter/material.dart';
 
 class ElementListTabHomeScreen extends StatelessWidget {
-  final String name;
-  final IconData icon;
+  final OccurrenceFilter occurrenceFilter;
 
-  ElementListTabHomeScreen({
-    @required this.name,
-    @required this.icon,
-  });
+  ElementListTabHomeScreen({@required this.occurrenceFilter});
 
   @override
   Widget build(BuildContext context) {
@@ -20,16 +17,15 @@ class ElementListTabHomeScreen extends StatelessWidget {
         shape: GenericPattern.CARD_BORDER_RADIUS,
         child: InkWell(
           onTap: () {
-            print('22222222222222');
+            print(this.occurrenceFilter.filter);
+            print(this.occurrenceFilter.value);
           },
-          borderRadius: BorderRadius.circular(
-            GenericPattern.BORDER_RADIUS
-          ),
+          borderRadius: BorderRadius.circular(GenericPattern.BORDER_RADIUS),
           child: Container(
             padding: EdgeInsets.all(5.0),
             child: IconText(
-              icon: this.icon,
-              text: this.name,
+              icon: Icons.headset_mic,
+              text: this.occurrenceFilter.name,
             ),
           ),
         ),
