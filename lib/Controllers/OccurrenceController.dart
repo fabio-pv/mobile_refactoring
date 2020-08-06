@@ -16,19 +16,7 @@ class OccurrenceController {
     OccurrenceFilter occurrenceFilter,
   }) async {
     try {
-      var queryString = RequestUtil()
-          .where(
-            property: 'codigo',
-            operator: RequestUtil.WHERE_LESS_THAN_OR_EQUAL_TO,
-            value: '2019-114291',
-          )
-          .where(
-            property: 'texto',
-            operator: RequestUtil.WHERE_LIKE,
-            value: keyword,
-            ignoreNull: true,
-          );
-
+      var queryString = RequestUtil();
       if (occurrenceFilter != null) {
         queryString = queryString.where(
           property: occurrenceFilter.filter,
@@ -43,8 +31,6 @@ class OccurrenceController {
             order: RequestUtil.ORDER_DESC,
           )
           .page(value: page);
-
-      print(queryString.result());
 
       final iterable = await this._occurrenceService.retrieveAll(
             queryString: queryString.result(),

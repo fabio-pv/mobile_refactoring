@@ -31,7 +31,9 @@ class SubsecretaryActionsPublicOccurrenceDetailScreen extends StatelessWidget {
           ),
           Align(
             alignment: Alignment.centerLeft,
-            child: Text('Ações a serem tomadas:'),
+            child: Center(
+              child: Text('Ações a serem tomadas:'),
+            ),
           ),
           ListActionPublicOccurrenceDetailScreen(
             occurrenceAction: this.occurrenceAction,

@@ -166,7 +166,14 @@ class Occurrence {
   List<String> getImagens() {
     List<String> imageList = [];
 
+    if (this.subsecretary == null) {
+      imageList.add(
+          'https://speckyboy.com/wp-content/uploads/2019/04/404-page-web-design-inspiration-42.jpg');
+      return imageList;
+    }
+
     if (this.subsecretary.imagem.isNotEmpty) {
+      imageList.clear();
       imageList.add(this.subsecretary.imagem);
     }
 
