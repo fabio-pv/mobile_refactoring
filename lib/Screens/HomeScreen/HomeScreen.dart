@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:fiscaliza_ja/Controllers/OccurrenceController.dart';
 import 'package:fiscaliza_ja/Models/Occurrence.dart';
+import 'package:fiscaliza_ja/Screens/HomeScreen/TabHomeScreen/TabHomeScreen.dart';
 import 'package:fiscaliza_ja/Widgets/Occurrence/ListOccurrenceWidget.dart';
 import 'package:fiscaliza_ja/Screens/HomeScreen/SearchHomeScreen.dart';
 import 'package:fiscaliza_ja/Widgets/HeaderMenu/HeaderMenu.dart';
@@ -65,9 +66,10 @@ class _HomeScreenState extends State<HomeScreen> {
               occurrenceList: this._occurrenceList,
               loadHandler: this.load,
             ),
-            SearchHomeScreen(
+            TabHomeScreen(),
+            /*SearchHomeScreen(
               load: this.load,
-            ),
+            ),*/
             HeaderMenu(),
           ],
         ),
