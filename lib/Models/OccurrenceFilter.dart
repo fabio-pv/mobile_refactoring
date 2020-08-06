@@ -4,6 +4,7 @@ class OccurrenceFilter {
   String icon;
   String filter;
   String value;
+  String operator;
 
   OccurrenceFilter({
     this.uuid,
@@ -11,6 +12,7 @@ class OccurrenceFilter {
     this.icon,
     this.filter,
     this.value,
+    this.operator,
   });
 
   OccurrenceFilter.fromJson(Map<String, dynamic> json) {
@@ -19,6 +21,7 @@ class OccurrenceFilter {
     icon = json['icon'];
     filter = json['filter'];
     value = json['value'];
+    operator = json['operator'];
   }
 
   Map<String, dynamic> toJson() {
@@ -28,6 +31,7 @@ class OccurrenceFilter {
     data['icon'] = this.icon;
     data['filter'] = this.filter;
     data['value'] = this.value;
+    data['operator'] = this.operator;
     return data;
   }
 }

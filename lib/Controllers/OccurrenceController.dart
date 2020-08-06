@@ -17,10 +17,11 @@ class OccurrenceController {
   }) async {
     try {
       var queryString = RequestUtil();
+
       if (occurrenceFilter != null) {
         queryString = queryString.where(
           property: occurrenceFilter.filter,
-          operator: RequestUtil.WHERE_EQUAL,
+          operator: RequestUtil.OPERATORS[occurrenceFilter.operator],
           value: occurrenceFilter.value,
         );
       }

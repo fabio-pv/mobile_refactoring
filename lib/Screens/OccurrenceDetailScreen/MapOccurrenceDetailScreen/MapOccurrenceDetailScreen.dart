@@ -30,7 +30,7 @@ class _MapOccurrenceDetailScreenState extends State<MapOccurrenceDetailScreen> {
     controller.animateCamera(
       CameraUpdate.newCameraPosition(
         CameraPosition(
-          zoom: 18,
+          zoom: 17,
           target: LatLng(
             widget.latitude,
             widget.longitude,

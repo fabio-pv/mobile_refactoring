@@ -10,6 +10,13 @@ class RequestUtil {
   static const ORDER_ASC = 'asc';
   static const ORDER_DESC = 'desc';
   static const PAGINATION_FALSE = false;
+  static const Map<String, String> OPERATORS = {
+    WHERE_EQUAL: WHERE_EQUAL,
+    WHERE_NOT_EQUAL: WHERE_NOT_EQUAL,
+    WHERE_GREATER_THAN_OR_EQUAL_TO: WHERE_GREATER_THAN_OR_EQUAL_TO,
+    WHERE_LESS_THAN_OR_EQUAL_TO: WHERE_LESS_THAN_OR_EQUAL_TO,
+    WHERE_LIKE: WHERE_LIKE,
+  };
 
   final String endpoint;
   String query = '';

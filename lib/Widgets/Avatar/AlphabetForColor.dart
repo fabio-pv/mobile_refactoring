@@ -24,6 +24,7 @@ class AlphabetForColor {
     'Q': Colors.brown[accentValue],
     'R': Colors.grey[accentValue],
     'S': Colors.orange[500],
+    'T': Colors.blueGrey[700],
     'U': Colors.lime[900],
     'V': Colors.lightGreen[700],
     'W': Colors.green[600],
@@ -33,7 +34,7 @@ class AlphabetForColor {
   };
 
   static getColor({String title}) {
-    if(title == null){
+    if (title == null) {
       return Colors.grey[900];
     }
 
