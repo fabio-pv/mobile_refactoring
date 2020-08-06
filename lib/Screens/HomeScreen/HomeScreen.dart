@@ -3,6 +3,8 @@ import 'dart:async';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:fiscaliza_ja/Controllers/OccurrenceController.dart';
 import 'package:fiscaliza_ja/Models/Occurrence.dart';
+import 'package:fiscaliza_ja/Models/OccurrenceFilter.dart';
+import 'package:fiscaliza_ja/Providers/HomeScreenProvider.dart';
 import 'package:fiscaliza_ja/Screens/HomeScreen/TabHomeScreen/TabHomeScreen.dart';
 import 'package:fiscaliza_ja/Widgets/Occurrence/ListOccurrenceWidget.dart';
 import 'package:fiscaliza_ja/Screens/HomeScreen/SearchHomeScreen.dart';
@@ -25,6 +27,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   List<Occurrence> _occurrenceList = [];
   int lastPage;
+  OccurrenceFilter _occurrenceFilterCurrent;
 
   @override
   void initState() {
@@ -35,15 +38,20 @@ class _HomeScreenState extends State<HomeScreen> {
   Future<void> load({
     int page = 1,
     String keyword,
+    OccurrenceFilter occurrenceFilter,
   }) async {
     try {
       if (this.lastPage == page) {
-        this._occurrenceList = [];
+        setState(() {
+          this._occurrenceList = [];
+          this._occurrenceFilterCurrent = occurrenceFilter;
+        });
       }
 
       final newOccurrenceList = await this.occurrenceController.getList(
             page: page,
             keyword: keyword,
+            occurrenceFilter: this._occurrenceFilterCurrent,
           );
 
       this.lastPage = page;
@@ -58,20 +66,24 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-        child: Stack(
-          children: [
-            ListOccurrenceWidget(
-              occurrenceList: this._occurrenceList,
-              loadHandler: this.load,
-            ),
-            TabHomeScreen(),
-            /*SearchHomeScreen(
+    return HomeScreenProvider(
+      doFilter: this.load,
+      occurrenceFilter: this._occurrenceFilterCurrent,
+      child: Scaffold(
+        body: SafeArea(
+          child: Stack(
+            children: [
+              ListOccurrenceWidget(
+                occurrenceList: this._occurrenceList,
+                loadHandler: this.load,
+              ),
+              TabHomeScreen(),
+              /*SearchHomeScreen(
               load: this.load,
             ),*/
-            HeaderMenu(),
-          ],
+              HeaderMenu(),
+            ],
+          ),
         ),
       ),
     );

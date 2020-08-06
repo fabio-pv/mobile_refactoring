@@ -15,7 +15,7 @@ class _ListTabHomeScreenState extends State<ListTabHomeScreen> {
 
   _ListTabHomeScreenState({@required this.occurrenceFilterController});
 
-  List<OccurrenceFilter> _occurrenceFilterList;
+  List<OccurrenceFilter> _occurrenceFilterList = [];
 
   @override
   void initState() {

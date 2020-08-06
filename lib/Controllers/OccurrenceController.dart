@@ -1,4 +1,5 @@
 import 'package:fiscaliza_ja/Models/Occurrence.dart';
+import 'package:fiscaliza_ja/Models/OccurrenceFilter.dart';
 import 'package:fiscaliza_ja/Services/OccurrenceService.dart';
 import 'package:fiscaliza_ja/Utils/RequestUtil.dart';
 
@@ -12,9 +13,10 @@ class OccurrenceController {
   Future<List<Occurrence>> getList({
     int page = 1,
     String keyword,
+    OccurrenceFilter occurrenceFilter,
   }) async {
     try {
-      final queryString = RequestUtil()
+      var queryString = RequestUtil()
           .where(
             property: 'codigo',
             operator: RequestUtil.WHERE_LESS_THAN_OR_EQUAL_TO,
@@ -25,16 +27,27 @@ class OccurrenceController {
             operator: RequestUtil.WHERE_LIKE,
             value: keyword,
             ignoreNull: true,
-          )
+          );
+
+      if (occurrenceFilter != null) {
+        queryString = queryString.where(
+          property: occurrenceFilter.filter,
+          operator: RequestUtil.WHERE_EQUAL,
+          value: occurrenceFilter.value,
+        );
+      }
+
+      queryString = queryString
           .orderBy(
             property: 'codigo',
             order: RequestUtil.ORDER_DESC,
           )
-          .page(value: page)
-          .result();
+          .page(value: page);
+
+      print(queryString.result());
 
       final iterable = await this._occurrenceService.retrieveAll(
-            queryString: queryString,
+            queryString: queryString.result(),
           );
 
       List<Occurrence> occurrenceList =
