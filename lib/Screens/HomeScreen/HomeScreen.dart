@@ -28,6 +28,7 @@ class _HomeScreenState extends State<HomeScreen> {
   List<Occurrence> _occurrenceList = [];
   int lastPage;
   OccurrenceFilter _occurrenceFilterCurrent;
+  bool headerHidden = false;
 
   @override
   void initState() {
@@ -64,11 +65,18 @@ class _HomeScreenState extends State<HomeScreen> {
     }
   }
 
+  void _headerController({bool remove = false}) {
+    setState(() {
+      this.headerHidden = remove;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return HomeScreenProvider(
       doFilter: this.load,
       occurrenceFilter: this._occurrenceFilterCurrent,
+      headerController: this._headerController,
       child: Scaffold(
         body: SafeArea(
           child: Stack(
@@ -77,11 +85,12 @@ class _HomeScreenState extends State<HomeScreen> {
                 occurrenceList: this._occurrenceList,
                 loadHandler: this.load,
               ),
-              TabHomeScreen(),
-              /*SearchHomeScreen(
-              load: this.load,
-            ),*/
-              HeaderMenu(),
+              TabHomeScreen(
+                hiddenHeader: this.headerHidden,
+              ),
+              HeaderMenu(
+                headerHidden: this.headerHidden,
+              ),
             ],
           ),
         ),

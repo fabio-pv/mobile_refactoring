@@ -6,6 +6,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 
 class HeaderMenu extends StatefulWidget {
+  final bool headerHidden;
+
+  HeaderMenu({@required this.headerHidden});
+
   @override
   _HeaderMenuState createState() => _HeaderMenuState();
 }
@@ -22,6 +26,10 @@ class _HeaderMenuState extends State<HeaderMenu> {
 
   @override
   Widget build(BuildContext context) {
+    if(widget.headerHidden == true){
+      return Container();
+    }
+
     return Align(
       alignment: Alignment.topLeft,
       child: Container(
