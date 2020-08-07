@@ -29,7 +29,7 @@ class AddressOccurrenceDetailScreen extends StatelessWidget {
             ),
             TextTwoStylesWidget(
               textHighlighted: 'Bairro: ',
-              text: this.occurrence.street?.nome ?? 'Não informado',
+              text: this.occurrence.district?.nome ?? 'Não informado',
             ),
             TextTwoStylesWidget(
               textHighlighted: 'Rua: ',

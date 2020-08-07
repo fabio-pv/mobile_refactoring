@@ -60,7 +60,7 @@ class OccurrenceWidget extends StatelessWidget {
                 ),
                 StatisticOccurrenceWidget(
                   views: this.occurrence.visualizacoes.toString(),
-                  likes: '22',
+                  likes: this.occurrence.occurrenceLikesTotal.toString(),
                   date: this.occurrence.createdAt,
                   occurrenceStatus: this.occurrence.occurrenceStatus,
                 ),

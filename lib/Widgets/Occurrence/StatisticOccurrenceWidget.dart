@@ -24,13 +24,13 @@ class StatisticOccurrenceWidget extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         IconText(
-          icon: Icons.search,
+          icon: Icons.pageview,
           text: this.views,
           color: Colors.grey[100],
         ),
         IconText(
           icon: Icons.thumb_up,
-          text: this.likes,
+          text: (this.likes == 'null' ? '0' : this.likes),
           color: Colors.grey[100],
         ),
         IconText(

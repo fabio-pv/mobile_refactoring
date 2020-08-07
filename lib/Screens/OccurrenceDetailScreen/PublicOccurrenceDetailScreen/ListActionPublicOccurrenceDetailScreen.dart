@@ -9,6 +9,12 @@ class ListActionPublicOccurrenceDetailScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    if(this.occurrenceAction == null){
+      return Center(
+        child: Text('Nenhuma ação foi registrada'),
+      );
+    }
+
     return ListView.builder(
       physics: NeverScrollableScrollPhysics(),
       shrinkWrap: true,
