@@ -21,7 +21,6 @@ class _HeaderMenuState extends State<HeaderMenu> {
     setState(() {
       this.openMenu = !this.openMenu;
     });
-    print(this.openMenu);
   }
 
   @override

@@ -8,8 +8,9 @@ class LeftHeaderMenu extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FloatingActionButton(
+      elevation: 4,
       onPressed: this.menuControllerHandler,
-      backgroundColor: Colors.purple,
+      backgroundColor: Theme.of(context).primaryColor,
       heroTag: null,
       child: Icon(
         Icons.widgets,

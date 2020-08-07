@@ -6,18 +6,18 @@ class TitleHeaderMenu extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
-      elevation: 2,
+      elevation: 3,
       shape: GenericPattern.CARD_BORDER_RADIUS,
       child: Container(
         padding: EdgeInsets.only(
           left: 20,
           right: 20,
         ),
-        height: 56,
+        height: 50,
         child: Align(
           alignment: Alignment.center,
           child: Text(
-            'Home',
+            'Início',
             style: Theme.of(context).textTheme.headline6,
           ),
         ),
