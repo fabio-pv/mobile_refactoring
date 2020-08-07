@@ -5,6 +5,7 @@ import 'package:fiscaliza_ja/Controllers/OccurrenceController.dart';
 import 'package:fiscaliza_ja/Models/Occurrence.dart';
 import 'package:fiscaliza_ja/Models/OccurrenceFilter.dart';
 import 'package:fiscaliza_ja/Providers/HomeScreenProvider.dart';
+import 'package:fiscaliza_ja/Screens/HomeScreen/OpenOccurrenceHomeScreen.dart';
 import 'package:fiscaliza_ja/Screens/HomeScreen/TabHomeScreen/TabHomeScreen.dart';
 import 'package:fiscaliza_ja/Widgets/Occurrence/ListOccurrenceWidget.dart';
 import 'package:fiscaliza_ja/Screens/HomeScreen/SearchHomeScreen.dart';
@@ -89,6 +90,9 @@ class _HomeScreenState extends State<HomeScreen> {
                 hiddenHeader: this.headerHidden,
               ),
               HeaderMenu(
+                headerHidden: this.headerHidden,
+              ),
+              OpenOccurrenceHomeScreen(
                 headerHidden: this.headerHidden,
               ),
             ],
