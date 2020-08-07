@@ -65,7 +65,7 @@ class _HomeScreenState extends State<HomeScreen> {
     }
   }
 
-  void _headerController({bool remove = false}) {
+  void _headerController({bool remove = false}) async {
     setState(() {
       this.headerHidden = remove;
     });

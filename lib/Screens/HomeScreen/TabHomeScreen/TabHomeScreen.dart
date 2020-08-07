@@ -8,13 +8,14 @@ class TabHomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (this.hiddenHeader == true) {
+    /*if (this.hiddenHeader == true) {
       return Container();
-    }
+    }*/
 
-    return Positioned(
+    return AnimatedPositioned(
       width: MediaQuery.of(context).size.width,
-      top: 80,
+      duration: Duration(milliseconds: 300),
+      top: !this.hiddenHeader ? 80 : -80,
       left: 0,
       child: ListTabHomeScreen(),
     );

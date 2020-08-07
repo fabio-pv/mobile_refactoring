@@ -22,7 +22,9 @@ class _ListOccurrenceWidgetState extends State<ListOccurrenceWidget> {
   BuildContext contextAux;
   RefreshController _refreshController =
       RefreshController(initialRefresh: false);
-  bool scroolListen = false;
+  bool scrollListenDown = true;
+  double scrollListenValue = 0;
+  double scrollListenDiff = 200;
 
   void shouldChangePage({
     int currentIndex,
@@ -45,17 +47,28 @@ class _ListOccurrenceWidgetState extends State<ListOccurrenceWidget> {
   }
 
   void _headerControllerIntercept({double value}) {
-    var scrollListenNewValue = false;
-    if (value >= 100) {
-      scrollListenNewValue = true;
-    }
-
-    if (scrollListenNewValue == this.scroolListen) {
+    if (this.scrollListenValue <= (value - this.scrollListenDiff)) {
+      this.scrollListenValue = value;
+      if (this.scrollListenDown == false) {
+        return;
+      }
+      this.scrollListenDown = false;
+      HomeScreenProvider.of(this.contextAux).headerController(
+        remove: true,
+      );
       return;
     }
-
-    this.scroolListen = scrollListenNewValue;
-    HomeScreenProvider.of(context).headerController(remove: this.scroolListen);
+    if (this.scrollListenValue >= (value + this.scrollListenDiff)) {
+      this.scrollListenValue = value;
+      if (this.scrollListenDown == true) {
+        return;
+      }
+      this.scrollListenDown = true;
+      HomeScreenProvider.of(this.contextAux).headerController(
+        remove: false,
+      );
+      return;
+    }
   }
 
   @override

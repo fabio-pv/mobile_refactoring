@@ -26,12 +26,10 @@ class _HeaderMenuState extends State<HeaderMenu> {
 
   @override
   Widget build(BuildContext context) {
-    if(widget.headerHidden == true){
-      return Container();
-    }
-
-    return Align(
-      alignment: Alignment.topLeft,
+    return AnimatedPositioned(
+      width: MediaQuery.of(context).size.width,
+      top: !widget.headerHidden ? 0 : -80,
+      duration: Duration(milliseconds: 500),
       child: Container(
         child: Stack(
           alignment: Alignment.topLeft,
