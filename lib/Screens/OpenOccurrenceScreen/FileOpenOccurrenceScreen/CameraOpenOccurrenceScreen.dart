@@ -1,4 +1,6 @@
 import 'package:camera/camera.dart';
+import 'package:fiscaliza_ja/Screens/OpenOccurrenceScreen/FileOpenOccurrenceScreen/GalleryFileOpenOccurrenceScreen.dart';
+import 'package:fiscaliza_ja/Screens/OpenOccurrenceScreen/FileOpenOccurrenceScreen/TakePictureFileOpenOccurrenceScreen.dart';
 import 'package:fiscaliza_ja/main.dart';
 import 'package:flutter/material.dart';
 import 'package:uuid/uuid.dart';
@@ -44,13 +46,16 @@ class _CameraOpenOccurrenceScreenState
     try {
       final path = appDocDir.path + '/' + this._uuid.v4() + '.jpg';
       await this._controller.takePicture(path);
-      this.files.add(path);
-      print(this.files);
+      setState(() {
+        this.files.add(path);
+      });
     } catch (e) {
       print('error _takePicture');
       print(e);
     }
   }
+
+  void _removePicture() {}
 
   @override
   Widget build(BuildContext context) {
@@ -62,13 +67,15 @@ class _CameraOpenOccurrenceScreenState
       children: [
         CameraPreview(this._controller),
         Align(
-          alignment: Alignment(0.0, 0.9),
-          child: FloatingActionButton(
-            heroTag: null,
-            onPressed: this._takePicture,
-            child: Icon(Icons.camera),
+          alignment: Alignment(-1.0, 0.95),
+          child: GalleryFileOpenOccurrenceScreen(
+            files: this.files,
           ),
-        )
+        ),
+        TakePictureFileOpenOccurrenceScreen(
+          takePictureHandler: this._takePicture,
+          files: this.files,
+        ),
       ],
     );
   }
