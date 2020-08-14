@@ -1,15 +1,20 @@
+import 'dart:io';
+
 import 'package:fiscaliza_ja/Screens/HomeScreen/HomeScreen.dart';
 import 'package:fiscaliza_ja/Screens/OccurrenceDetailScreen/OccurrenceDetailScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:camera/camera.dart';
+import 'package:path_provider/path_provider.dart';
 
 List<CameraDescription> cameras;
+Directory appDocDir;
 
 void main() async {
   await DotEnv().load('.env');
   WidgetsFlutterBinding.ensureInitialized();
   cameras = await availableCameras();
+  appDocDir = await getTemporaryDirectory();
   runApp(Main());
 }
 
