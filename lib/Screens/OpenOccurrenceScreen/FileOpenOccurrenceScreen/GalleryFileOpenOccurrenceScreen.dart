@@ -6,6 +6,8 @@ class GalleryFileOpenOccurrenceScreen extends StatelessWidget {
 
   GalleryFileOpenOccurrenceScreen({@required this.files});
 
+  ScrollController _scrollController = new ScrollController();
+
   @override
   Widget build(BuildContext context) {
     if (this.files.length <= 0) {

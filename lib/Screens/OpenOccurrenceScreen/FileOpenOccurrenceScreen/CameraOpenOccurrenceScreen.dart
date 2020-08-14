@@ -1,4 +1,5 @@
 import 'package:camera/camera.dart';
+import 'package:fiscaliza_ja/Providers/CameraOpenOccurrenceScreenProvider.dart';
 import 'package:fiscaliza_ja/Screens/OpenOccurrenceScreen/FileOpenOccurrenceScreen/GalleryFileOpenOccurrenceScreen.dart';
 import 'package:fiscaliza_ja/Screens/OpenOccurrenceScreen/FileOpenOccurrenceScreen/TakePictureFileOpenOccurrenceScreen.dart';
 import 'package:fiscaliza_ja/main.dart';
@@ -55,7 +56,11 @@ class _CameraOpenOccurrenceScreenState
     }
   }
 
-  void _removePicture() {}
+  void _removePicture({int index}) {
+    setState(() {
+      this.files.removeAt(index);
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -63,20 +68,23 @@ class _CameraOpenOccurrenceScreenState
       return CircularProgressIndicator();
     }
 
-    return Stack(
-      children: [
-        CameraPreview(this._controller),
-        Align(
-          alignment: Alignment(-1.0, 0.95),
-          child: GalleryFileOpenOccurrenceScreen(
+    return CameraOpenOccurrenceScreenProvider(
+      doRemoveFile: this._removePicture,
+      child: Stack(
+        children: [
+          CameraPreview(this._controller),
+          Align(
+            alignment: Alignment(-1.0, 0.95),
+            child: GalleryFileOpenOccurrenceScreen(
+              files: this.files,
+            ),
+          ),
+          TakePictureFileOpenOccurrenceScreen(
+            takePictureHandler: this._takePicture,
             files: this.files,
           ),
-        ),
-        TakePictureFileOpenOccurrenceScreen(
-          takePictureHandler: this._takePicture,
-          files: this.files,
-        ),
-      ],
+        ],
+      ),
     );
   }
 }
