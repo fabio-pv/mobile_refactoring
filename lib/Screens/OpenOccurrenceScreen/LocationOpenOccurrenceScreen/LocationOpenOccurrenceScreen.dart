@@ -1,5 +1,7 @@
 import 'dart:async';
 
+import 'package:fiscaliza_ja/Providers/LocationOpenOccurrenceScreenProvider.dart';
+import 'package:fiscaliza_ja/Screens/OpenOccurrenceScreen/LocationOpenOccurrenceScreen/AutoManualLocationOpenoccurrenceScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -23,11 +25,11 @@ class _LocationOpenOccurrenceScreenState
 
   @override
   void initState() {
-    this._tryGetPosition();
+    //this._tryGetPosition();
     super.initState();
   }
 
-  Future<void> _tryGetPosition() async {
+  Future<void> _setCurrentPosition() async {
     try {
       Position position = await Geolocator()
           .getCurrentPosition(desiredAccuracy: LocationAccuracy.best);
@@ -50,13 +52,21 @@ class _LocationOpenOccurrenceScreenState
 
   @override
   Widget build(BuildContext context) {
-    return GoogleMap(
-      initialCameraPosition: this.position,
-      zoomControlsEnabled: false,
-      myLocationEnabled: true,
-      onMapCreated: (GoogleMapController controller) {
-        this._controller.complete(controller);
-      },
+    return LocationOpenOccurrenceScreenProvider(
+      doSetCurrentPosition: this._setCurrentPosition,
+      child: Stack(
+        children: [
+          GoogleMap(
+            initialCameraPosition: this.position,
+            zoomControlsEnabled: false,
+            myLocationEnabled: true,
+            onMapCreated: (GoogleMapController controller) {
+              this._controller.complete(controller);
+            },
+          ),
+          AutoManualLocationOpenoccurrenceScreen(),
+        ],
+      ),
     );
   }
 }
