@@ -1,4 +1,5 @@
 import 'package:fiscaliza_ja/Screens/OpenOccurrenceScreen/FileOpenOccurrenceScreen/FileOpenOccurrenceScreen.dart';
+import 'package:fiscaliza_ja/Screens/OpenOccurrenceScreen/HeaderOpenOccurrenceScreen/HeaderOpenOccurrenceScreen.dart';
 import 'package:flutter/material.dart';
 
 class OpenOccurrenceScreen extends StatefulWidget {
@@ -10,7 +11,12 @@ class _OpenOccurrenceScreenState extends State<OpenOccurrenceScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: FileOpenOccurrenceScreen(),
+      body: Stack(
+        children: [
+          FileOpenOccurrenceScreen(),
+          HeaderOpenOccurrenceScreen(),
+        ],
+      ),
     );
   }
 }

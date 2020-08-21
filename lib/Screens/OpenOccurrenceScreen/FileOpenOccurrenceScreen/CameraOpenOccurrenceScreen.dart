@@ -4,6 +4,7 @@ import 'package:fiscaliza_ja/Screens/OpenOccurrenceScreen/FileOpenOccurrenceScre
 import 'package:fiscaliza_ja/Screens/OpenOccurrenceScreen/FileOpenOccurrenceScreen/TakePictureFileOpenOccurrenceScreen.dart';
 import 'package:fiscaliza_ja/main.dart';
 import 'package:flutter/material.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:uuid/uuid.dart';
 
 class CameraOpenOccurrenceScreen extends StatefulWidget {
@@ -45,6 +46,9 @@ class _CameraOpenOccurrenceScreenState
 
   void _takePicture() async {
     try {
+
+      final appDocDir = await getApplicationDocumentsDirectory();
+
       final path = appDocDir.path + '/' + this._uuid.v4() + '.jpg';
       await this._controller.takePicture(path);
       setState(() {

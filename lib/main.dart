@@ -8,13 +8,11 @@ import 'package:camera/camera.dart';
 import 'package:path_provider/path_provider.dart';
 
 List<CameraDescription> cameras;
-Directory appDocDir;
 
 void main() async {
   await DotEnv().load('.env');
   WidgetsFlutterBinding.ensureInitialized();
   cameras = await availableCameras();
-  appDocDir = await getTemporaryDirectory();
   runApp(Main());
 }
 
