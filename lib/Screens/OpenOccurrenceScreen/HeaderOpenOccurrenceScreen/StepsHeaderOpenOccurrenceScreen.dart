@@ -14,6 +14,7 @@ class StepsHeaderOpenOccurrenceScreen extends StatelessWidget {
             ),
             ElementStepHeaderOpenOccurrenceScreen(
               icon: Icons.add_location,
+              current: true,
             ),
             ElementStepHeaderOpenOccurrenceScreen(
               icon: Icons.description,

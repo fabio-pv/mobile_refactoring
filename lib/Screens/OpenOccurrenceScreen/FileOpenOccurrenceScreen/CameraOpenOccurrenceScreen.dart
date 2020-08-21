@@ -1,5 +1,6 @@
 import 'package:camera/camera.dart';
 import 'package:fiscaliza_ja/Providers/CameraOpenOccurrenceScreenProvider.dart';
+import 'package:fiscaliza_ja/Providers/OpenOccurrenceScreenProvider.dart';
 import 'package:fiscaliza_ja/Screens/OpenOccurrenceScreen/FileOpenOccurrenceScreen/GalleryFileOpenOccurrenceScreen.dart';
 import 'package:fiscaliza_ja/Screens/OpenOccurrenceScreen/FileOpenOccurrenceScreen/TakePictureFileOpenOccurrenceScreen.dart';
 import 'package:fiscaliza_ja/main.dart';
@@ -18,6 +19,7 @@ class _CameraOpenOccurrenceScreenState
   CameraController _controller;
   Uuid _uuid;
   List<String> files = [];
+  BuildContext _contextAux;
 
   _CameraOpenOccurrenceScreenState() {
     this._uuid = new Uuid();
@@ -46,14 +48,12 @@ class _CameraOpenOccurrenceScreenState
 
   void _takePicture() async {
     try {
-
       final appDocDir = await getApplicationDocumentsDirectory();
 
       final path = appDocDir.path + '/' + this._uuid.v4() + '.jpg';
       await this._controller.takePicture(path);
-      setState(() {
-        this.files.add(path);
-      });
+      this.files.add(path);
+      this._updateFiles();
     } catch (e) {
       print('error _takePicture');
       print(e);
@@ -61,9 +61,17 @@ class _CameraOpenOccurrenceScreenState
   }
 
   void _removePicture({int index}) {
+    this.files.removeAt(index);
+    this._updateFiles();
+  }
+
+  void _updateFiles() {
     setState(() {
-      this.files.removeAt(index);
+      this.files = this.files;
     });
+    OpenOccurrenceScreenProvider.of(this._contextAux).doReturnFiles(
+      files: this.files,
+    );
   }
 
   @override
@@ -71,7 +79,7 @@ class _CameraOpenOccurrenceScreenState
     if (!this._controller.value.isInitialized) {
       return CircularProgressIndicator();
     }
-
+    this._contextAux = context;
     return CameraOpenOccurrenceScreenProvider(
       doRemoveFile: this._removePicture,
       child: Stack(
