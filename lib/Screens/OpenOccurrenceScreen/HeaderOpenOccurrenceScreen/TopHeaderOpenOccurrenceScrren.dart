@@ -1,4 +1,5 @@
 import 'package:fiscaliza_ja/Patterns/GenericPattern.dart';
+import 'package:fiscaliza_ja/Providers/OpenOccurrenceScreenProvider.dart';
 import 'package:flutter/material.dart';
 
 class TopHeaderOpenOccurrenceScrren extends StatelessWidget {
@@ -45,18 +46,23 @@ class TopHeaderOpenOccurrenceScrren extends StatelessWidget {
               color: Theme.of(context).accentColor,
               elevation: 5,
               shape: GenericPattern.CARD_BORDER_RADIUS,
-              child: Container(
-                padding: EdgeInsets.only(
-                  left: 10.0,
-                  right: 10.0,
-                ),
-                height: 35,
-                child: Center(
-                  child: Text(
-                    'Próximo',
-                    style: TextStyle(
-                      fontWeight: FontWeight.w700,
-                      color: Colors.white,
+              child: InkWell(
+                onTap: () {
+                  OpenOccurrenceScreenProvider.of(context).doNextStep();
+                },
+                child: Container(
+                  padding: EdgeInsets.only(
+                    left: 10.0,
+                    right: 10.0,
+                  ),
+                  height: 35,
+                  child: Center(
+                    child: Text(
+                      'Próximo',
+                      style: TextStyle(
+                        fontWeight: FontWeight.w700,
+                        color: Colors.white,
+                      ),
                     ),
                   ),
                 ),
