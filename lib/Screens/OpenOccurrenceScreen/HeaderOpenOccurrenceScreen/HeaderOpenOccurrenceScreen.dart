@@ -5,6 +5,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 
 class HeaderOpenOccurrenceScreen extends StatelessWidget {
+  final int step;
+
+  HeaderOpenOccurrenceScreen({@required this.step});
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -15,7 +19,9 @@ class HeaderOpenOccurrenceScreen extends StatelessWidget {
       ),
       child: Column(
         children: [
-          TopHeaderOpenOccurrenceScrren(),
+          TopHeaderOpenOccurrenceScrren(
+            step: this.step,
+          ),
           StepsHeaderOpenOccurrenceScreen(),
         ],
       ),

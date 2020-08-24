@@ -59,6 +59,7 @@ class _LocationOpenOccurrenceScreenState
             initialCameraPosition: this.position,
             zoomControlsEnabled: false,
             myLocationEnabled: true,
+            myLocationButtonEnabled: false,
             onMapCreated: (GoogleMapController controller) {
               this._controller.complete(controller);
             },

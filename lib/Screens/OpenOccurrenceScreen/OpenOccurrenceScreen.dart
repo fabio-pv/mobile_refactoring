@@ -57,7 +57,9 @@ class _OpenOccurrenceScreenState extends State<OpenOccurrenceScreen> {
                 StepsWidgetOpenOccurrenceScreen.LOCATION_STEP) ...[
               LocationOpenOccurrenceScreen(),
             ],
-            HeaderOpenOccurrenceScreen(),
+            HeaderOpenOccurrenceScreen(
+              step: this._currentStep,
+            ),
           ],
         ),
       ),
