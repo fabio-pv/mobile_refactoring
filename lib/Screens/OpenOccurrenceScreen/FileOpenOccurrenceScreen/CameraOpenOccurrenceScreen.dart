@@ -9,6 +9,10 @@ import 'package:path_provider/path_provider.dart';
 import 'package:uuid/uuid.dart';
 
 class CameraOpenOccurrenceScreen extends StatefulWidget {
+  final List<String> files;
+
+  CameraOpenOccurrenceScreen({@required this.files});
+
   @override
   _CameraOpenOccurrenceScreenState createState() =>
       _CameraOpenOccurrenceScreenState();
@@ -28,6 +32,7 @@ class _CameraOpenOccurrenceScreenState
   @override
   void initState() {
     super.initState();
+    this.files = widget.files;
     this._controller = CameraController(
       cameras.first,
       ResolutionPreset.ultraHigh,

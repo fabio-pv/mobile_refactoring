@@ -1,4 +1,5 @@
 import 'package:fiscaliza_ja/Providers/OpenOccurrenceScreenProvider.dart';
+import 'package:fiscaliza_ja/Screens/OpenOccurrenceScreen/FileOpenOccurrenceScreen/CameraOpenOccurrenceScreen.dart';
 import 'package:fiscaliza_ja/Screens/OpenOccurrenceScreen/FileOpenOccurrenceScreen/FileOpenOccurrenceScreen.dart';
 import 'package:fiscaliza_ja/Screens/OpenOccurrenceScreen/HeaderOpenOccurrenceScreen/HeaderOpenOccurrenceScreen.dart';
 import 'package:fiscaliza_ja/Screens/OpenOccurrenceScreen/LocationOpenOccurrenceScreen/LocationOpenOccurrenceScreen.dart';
@@ -12,7 +13,7 @@ class OpenOccurrenceScreen extends StatefulWidget {
 
 class _OpenOccurrenceScreenState extends State<OpenOccurrenceScreen> {
   int _currentStep = 0;
-  List<String> _files;
+  List<String> _files = [];
 
   void _nextStep() {
     setState(() {
@@ -46,9 +47,16 @@ class _OpenOccurrenceScreenState extends State<OpenOccurrenceScreen> {
       child: Scaffold(
         body: Stack(
           children: [
-            StepsWidgetOpenOccurrenceScreen.getByIndex(
-              index: this._currentStep,
-            ),
+            if (this._currentStep ==
+                StepsWidgetOpenOccurrenceScreen.FILE_STEP) ...[
+              CameraOpenOccurrenceScreen(
+                files: this._files,
+              ),
+            ],
+            if (this._currentStep ==
+                StepsWidgetOpenOccurrenceScreen.LOCATION_STEP) ...[
+              LocationOpenOccurrenceScreen(),
+            ],
             HeaderOpenOccurrenceScreen(),
           ],
         ),

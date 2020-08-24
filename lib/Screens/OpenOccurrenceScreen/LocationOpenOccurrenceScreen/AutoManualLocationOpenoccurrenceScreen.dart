@@ -18,21 +18,28 @@ class AutoManualLocationOpenoccurrenceScreen extends StatefulWidget {
 class _AutoManualLocationOpenoccurrenceScreenState
     extends State<AutoManualLocationOpenoccurrenceScreen> {
   int choice = 0;
+  BuildContext _contextAux;
 
   void _choice({int choice}) {
     setState(() {
       this.choice = choice;
     });
+
+    if(choice == AutoManualLocationOpenoccurrenceScreen.AUTO_CHOICE){
+      LocationOpenOccurrenceScreenProvider.of(context).doSetCurrentPosition();
+    }
+
   }
 
   @override
   Widget build(BuildContext context) {
-    if (this.choice == 0) {
+    this._contextAux = context;
+    if (this.choice == AutoManualLocationOpenoccurrenceScreen.NO_CHOICE) {
       return QuestionLocationOpenOccurrenceScreen(
         doChoiceHandler: this._choice,
       );
     }
-    if (this.choice == 1) {
+    if (this.choice == AutoManualLocationOpenoccurrenceScreen.AUTO_CHOICE) {
       return ChoiceAutoLocationOpenOccurrenceScreen();
     }
   }

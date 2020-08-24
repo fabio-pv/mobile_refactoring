@@ -25,7 +25,6 @@ class _LocationOpenOccurrenceScreenState
 
   @override
   void initState() {
-    //this._tryGetPosition();
     super.initState();
   }
 
