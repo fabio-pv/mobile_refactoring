@@ -22,6 +22,7 @@ class _LocationOpenOccurrenceScreenState
     ),
     zoom: 12,
   );
+  Placemark _placemark;
 
   @override
   void initState() {
@@ -38,7 +39,7 @@ class _LocationOpenOccurrenceScreenState
           position.latitude,
           position.longitude,
         ),
-        zoom: 18,
+        zoom: 19,
       );
 
       final GoogleMapController controller = await this._controller.future;
@@ -50,6 +51,7 @@ class _LocationOpenOccurrenceScreenState
   }
 
   Future<void> _getScreenCordinate() async {
+
     double screenWidth = MediaQuery.of(context).size.width;
     double screenHeight = MediaQuery.of(context).size.height;
 
@@ -67,7 +69,15 @@ class _LocationOpenOccurrenceScreenState
     final GoogleMapController controller = await this._controller.future;
     LatLng middlePoint = await controller.getLatLng(screenCoordinate);
 
-    print(middlePoint);
+    List<Placemark> placemark = await Geolocator().placemarkFromCoordinates(
+      middlePoint.latitude,
+      middlePoint.longitude,
+    );
+
+    setState(() {
+      this._placemark = placemark.first;
+    });
+
   }
 
   @override
@@ -85,7 +95,9 @@ class _LocationOpenOccurrenceScreenState
             },
             onCameraIdle: this._getScreenCordinate,
           ),
-          AutoManualLocationOpenoccurrenceScreen(),
+          AutoManualLocationOpenoccurrenceScreen(
+            placemark: this._placemark,
+          ),
         ],
       ),
     );
