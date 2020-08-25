@@ -21,23 +21,15 @@ class _AutoManualLocationOpenoccurrenceScreenState
   int choice = 0;
   BuildContext _contextAux;
 
-  void _choice({int choice}) {
+  Future<void> _choice({int choice}) async {
     setState(() {
       this.choice = choice;
     });
 
     if (choice == AutoManualLocationOpenoccurrenceScreen.AUTO_CHOICE) {
-      LocationOpenOccurrenceScreenProvider.of(context).doSetCurrentPosition();
+      await LocationOpenOccurrenceScreenProvider.of(context)
+          .doSetCurrentPosition();
     }
-
-    showMaterialModalBottomSheet(
-      context: context,
-      expand: false,
-      elevation: 5,
-      shape: GenericPattern.CARD_BORDER_RADIUS_TOP,
-      builder: (context, scrollController) =>
-          ChoiceAutoLocationOpenOccurrenceScreen(),
-    );
   }
 
   @override
@@ -48,9 +40,15 @@ class _AutoManualLocationOpenoccurrenceScreenState
         doChoiceHandler: this._choice,
       );
     }
-    return Container();
-    /*if (this.choice == AutoManualLocationOpenoccurrenceScreen.AUTO_CHOICE) {
-      return ChoiceAutoLocationOpenOccurrenceScreen();
-    }*/
+
+    return Container(
+      child: Center(
+        child: Icon(
+          Icons.location_on,
+          size: 40,
+          color: Theme.of(context).primaryColor,
+        ),
+      ),
+    );
   }
 }

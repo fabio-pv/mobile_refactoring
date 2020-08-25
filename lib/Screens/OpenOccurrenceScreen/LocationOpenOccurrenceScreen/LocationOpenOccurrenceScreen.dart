@@ -17,8 +17,8 @@ class _LocationOpenOccurrenceScreenState
   Completer<GoogleMapController> _controller = Completer();
   CameraPosition position = CameraPosition(
     target: LatLng(
-      -22.506371,
-      -44.093599,
+      -22.517073623625734,
+      -44.10279639065266,
     ),
     zoom: 12,
   );
@@ -49,6 +49,27 @@ class _LocationOpenOccurrenceScreenState
     }
   }
 
+  Future<void> _getScreenCordinate() async {
+    double screenWidth = MediaQuery.of(context).size.width;
+    double screenHeight = MediaQuery.of(context).size.height;
+
+    screenWidth *= MediaQuery.of(context).devicePixelRatio;
+    screenHeight *= MediaQuery.of(context).devicePixelRatio;
+
+    double middleX = screenWidth / 2;
+    double middleY = screenHeight / 2;
+
+    ScreenCoordinate screenCoordinate = ScreenCoordinate(
+      x: middleX.round(),
+      y: middleY.round(),
+    );
+
+    final GoogleMapController controller = await this._controller.future;
+    LatLng middlePoint = await controller.getLatLng(screenCoordinate);
+
+    print(middlePoint);
+  }
+
   @override
   Widget build(BuildContext context) {
     return LocationOpenOccurrenceScreenProvider(
@@ -62,6 +83,7 @@ class _LocationOpenOccurrenceScreenState
             onMapCreated: (GoogleMapController controller) {
               this._controller.complete(controller);
             },
+            onCameraIdle: this._getScreenCordinate,
           ),
           AutoManualLocationOpenoccurrenceScreen(),
         ],
