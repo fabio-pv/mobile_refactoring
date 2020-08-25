@@ -1,11 +1,18 @@
-import 'package:fiscaliza_ja/Models/Occurrence.dart';
+import 'dart:io';
+
 import 'package:fiscaliza_ja/Screens/HomeScreen/HomeScreen.dart';
 import 'package:fiscaliza_ja/Screens/OccurrenceDetailScreen/OccurrenceDetailScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:camera/camera.dart';
+import 'package:path_provider/path_provider.dart';
+
+List<CameraDescription> cameras;
 
 void main() async {
   await DotEnv().load('.env');
+  WidgetsFlutterBinding.ensureInitialized();
+  cameras = await availableCameras();
   runApp(Main());
 }
 
