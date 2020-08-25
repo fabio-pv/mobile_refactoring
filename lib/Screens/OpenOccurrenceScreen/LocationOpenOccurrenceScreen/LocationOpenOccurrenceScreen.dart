@@ -38,7 +38,7 @@ class _LocationOpenOccurrenceScreenState
           position.latitude,
           position.longitude,
         ),
-        zoom: 17,
+        zoom: 18,
       );
 
       final GoogleMapController controller = await this._controller.future;
@@ -58,7 +58,6 @@ class _LocationOpenOccurrenceScreenState
           GoogleMap(
             initialCameraPosition: this.position,
             zoomControlsEnabled: false,
-            myLocationEnabled: true,
             myLocationButtonEnabled: false,
             onMapCreated: (GoogleMapController controller) {
               this._controller.complete(controller);
