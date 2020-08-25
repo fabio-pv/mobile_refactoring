@@ -4,6 +4,7 @@ import 'package:fiscaliza_ja/Screens/OpenOccurrenceScreen/LocationOpenOccurrence
 import 'package:fiscaliza_ja/Screens/OpenOccurrenceScreen/LocationOpenOccurrenceScreen/QuestionLocationOpenOccurrenceScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 
 class AutoManualLocationOpenoccurrenceScreen extends StatefulWidget {
   static const NO_CHOICE = 0;
@@ -25,10 +26,18 @@ class _AutoManualLocationOpenoccurrenceScreenState
       this.choice = choice;
     });
 
-    if(choice == AutoManualLocationOpenoccurrenceScreen.AUTO_CHOICE){
+    if (choice == AutoManualLocationOpenoccurrenceScreen.AUTO_CHOICE) {
       LocationOpenOccurrenceScreenProvider.of(context).doSetCurrentPosition();
     }
 
+    showMaterialModalBottomSheet(
+      context: context,
+      expand: false,
+      elevation: 5,
+      shape: GenericPattern.CARD_BORDER_RADIUS_TOP,
+      builder: (context, scrollController) =>
+          ChoiceAutoLocationOpenOccurrenceScreen(),
+    );
   }
 
   @override
@@ -39,8 +48,9 @@ class _AutoManualLocationOpenoccurrenceScreenState
         doChoiceHandler: this._choice,
       );
     }
-    if (this.choice == AutoManualLocationOpenoccurrenceScreen.AUTO_CHOICE) {
+    return Container();
+    /*if (this.choice == AutoManualLocationOpenoccurrenceScreen.AUTO_CHOICE) {
       return ChoiceAutoLocationOpenOccurrenceScreen();
-    }
+    }*/
   }
 }
