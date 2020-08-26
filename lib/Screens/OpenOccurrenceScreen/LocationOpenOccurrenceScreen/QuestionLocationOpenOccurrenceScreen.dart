@@ -16,7 +16,7 @@ class QuestionLocationOpenOccurrenceScreen extends StatelessWidget {
         children: [
           Card(
             elevation: 5,
-            color: Colors.grey[400],
+            color: Colors.grey[300],
             shape: GenericPattern.CARD_BORDER_RADIUS,
             child: Container(
               padding: EdgeInsets.all(10.0),
@@ -58,14 +58,18 @@ class QuestionLocationOpenOccurrenceScreen extends StatelessWidget {
             shape: GenericPattern.CARD_BORDER_RADIUS,
             child: InkWell(
               onTap: () {
-                print('Manualmente');
+                this.doChoiceHandler(
+                  choice: AutoManualLocationOpenoccurrenceScreen.MANUAL_CHOICE,
+                );
               },
               child: Container(
                 padding: EdgeInsets.all(10.0),
                 child: Text(
                   'Manualmente irei escrever o endreço',
                   style: TextStyle(
-                      color: Colors.white, fontWeight: FontWeight.w600),
+                    color: Colors.white,
+                    fontWeight: FontWeight.w600,
+                  ),
                 ),
               ),
             ),

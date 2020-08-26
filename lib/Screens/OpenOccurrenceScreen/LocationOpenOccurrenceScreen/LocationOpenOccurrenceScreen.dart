@@ -40,6 +40,7 @@ class _LocationOpenOccurrenceScreenState
           position.longitude,
         ),
         zoom: 19,
+        tilt: 40
       );
 
       final GoogleMapController controller = await this._controller.future;
