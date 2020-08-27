@@ -1,7 +1,7 @@
 import 'package:fiscaliza_ja/Patterns/GenericPattern.dart';
 import 'package:fiscaliza_ja/Providers/LocationOpenOccurrenceScreenProvider.dart';
 import 'package:fiscaliza_ja/Screens/OpenOccurrenceScreen/LocationOpenOccurrenceScreen/AutoLocationOpenOccurrenceScreen.dart';
-import 'package:fiscaliza_ja/Screens/OpenOccurrenceScreen/LocationOpenOccurrenceScreen/ManualLocationOpenOccurrenceScreen.dart';
+import 'package:fiscaliza_ja/Screens/OpenOccurrenceScreen/LocationOpenOccurrenceScreen/ManualLocationOpenOccurrence/ManualLocationOpenOccurrenceScreen.dart';
 import 'package:fiscaliza_ja/Screens/OpenOccurrenceScreen/LocationOpenOccurrenceScreen/QuestionLocationOpenOccurrenceScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
