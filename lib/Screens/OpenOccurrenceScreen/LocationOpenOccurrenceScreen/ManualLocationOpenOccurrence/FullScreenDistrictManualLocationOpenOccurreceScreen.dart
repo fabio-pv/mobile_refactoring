@@ -36,6 +36,16 @@ class _FullScreenDistrictManualLocationOpenOccurreceScreenState
 
   @override
   Widget build(BuildContext context) {
+
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Escolha um bairro'),
+      ),
+      body: Center(
+        child: CircularProgressIndicator(),
+      ),
+    );
+
     return Scaffold(
       appBar: AppBar(
         title: Text('Escolha um bairro'),
