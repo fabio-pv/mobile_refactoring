@@ -28,7 +28,7 @@ class _DistrictManualLocationOpenOccurreceScreenState
     });
 
     LocationOpenOccurrenceScreenProvider.of(context).doSetPositionByString(
-      location: this._neighborhood.nome,
+      neighborhood: this._neighborhood.nome,
     );
   }
 

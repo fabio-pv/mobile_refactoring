@@ -2,8 +2,11 @@ import 'package:flutter/material.dart';
 
 class LocationOpenOccurrenceScreenProvider extends InheritedWidget {
   final Function() doSetCurrentPosition;
-
-  final Function({@required String location}) doSetPositionByString;
+  final Function({
+    String neighborhood,
+    String street,
+    String number,
+  }) doSetPositionByString;
 
   LocationOpenOccurrenceScreenProvider({
     @required Widget child,

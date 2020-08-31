@@ -23,6 +23,10 @@ class _LocationOpenOccurrenceScreenState
     zoom: 12,
   );
   Placemark _placemark;
+  String _addressInital = 'Volta Redonda RJ Brasil';
+  String _neighborhood = '';
+  String _street = '';
+  String _number = '';
 
   @override
   void initState() {
@@ -51,22 +55,40 @@ class _LocationOpenOccurrenceScreenState
     }
   }
 
-  Future<void> _setPositionByString({@required String location}) async {
+  Future<void> _setPositionByString({
+    String neighborhood = '',
+    String street = '',
+    String number = '',
+  }) async {
     try {
-      if (location == null) {
-        return;
-      }
-      final locationForSearch = 'Brasil Volta Redonda RJ ' + location;
+      this._neighborhood =
+          (neighborhood.isEmpty ? this._neighborhood : neighborhood);
+      this._street = (street.isEmpty ? this._street : street);
+      this._number = (number.isEmpty ? this._number : number);
 
+      final address = this._street +
+          ',' +
+          this._number +
+          ' - ' +
+          this._neighborhood +
+          ' ' +
+          this._addressInital;
+      print(address);
       List<Placemark> placemark =
-          await Geolocator().placemarkFromAddress(locationForSearch);
+          await Geolocator().placemarkFromAddress(address);
+
+      final zoom = this.getZoomToSearch(
+        neighborhood: neighborhood,
+        street: street,
+        number: number,
+      );
 
       final newPosition = CameraPosition(
         target: LatLng(
           placemark.first.position.latitude,
           placemark.first.position.longitude,
         ),
-        zoom: 15.5,
+        zoom: zoom,
         tilt: 0,
       );
 
@@ -75,6 +97,21 @@ class _LocationOpenOccurrenceScreenState
     } catch (e) {
       print('error');
     }
+  }
+
+  double getZoomToSearch({
+    String neighborhood,
+    String street,
+    String number,
+  }) {
+    if (number.isNotEmpty) {
+      return 19.0;
+    }
+    if (street.isNotEmpty) {
+      return 17.0;
+    }
+
+    return 15.5;
   }
 
   Future<void> _getScreenCordinate() async {
