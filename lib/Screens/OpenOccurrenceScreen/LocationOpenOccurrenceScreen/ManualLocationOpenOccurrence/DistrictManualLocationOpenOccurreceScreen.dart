@@ -1,3 +1,5 @@
+import 'package:fiscaliza_ja/Models/Neighborhood.dart';
+import 'package:fiscaliza_ja/Providers/LocationOpenOccurrenceScreenProvider.dart';
 import 'package:fiscaliza_ja/Screens/OpenOccurrenceScreen/LocationOpenOccurrenceScreen/ManualLocationOpenOccurrence/FullScreenDistrictManualLocationOpenOccurreceScreen.dart';
 import 'package:flutter/material.dart';
 
@@ -9,16 +11,24 @@ class DistrictManualLocationOpenOccurreceScreen extends StatefulWidget {
 
 class _DistrictManualLocationOpenOccurreceScreenState
     extends State<DistrictManualLocationOpenOccurreceScreen> {
-  bool _showSelect = false;
+  Neighborhood _neighborhood;
 
-  void _doShowSelect() {
-     Navigator.of(context).push(
-      MaterialPageRoute(
+  void _doShowSelect() async {
+    Neighborhood neighborhood = await Navigator.of(context).push(
+      MaterialPageRoute<Neighborhood>(
         builder: (BuildContext context) {
           return FullScreenDistrictManualLocationOpenOccurreceScreen();
         },
         fullscreenDialog: true,
       ),
+    );
+
+    setState(() {
+      this._neighborhood = neighborhood;
+    });
+
+    LocationOpenOccurrenceScreenProvider.of(context).doSetPositionByString(
+      location: this._neighborhood.nome,
     );
   }
 
@@ -28,11 +38,11 @@ class _DistrictManualLocationOpenOccurreceScreenState
       child: InkWell(
         onTap: this._doShowSelect,
         child: Text(
-          'Bairro',
+          this._neighborhood?.nome ?? 'Bairro',
           style: TextStyle(
             fontSize: 20,
             fontWeight: FontWeight.w600,
-            color: Colors.grey,
+            color: (this._neighborhood == null ? Colors.grey : Colors.black),
           ),
         ),
       ),

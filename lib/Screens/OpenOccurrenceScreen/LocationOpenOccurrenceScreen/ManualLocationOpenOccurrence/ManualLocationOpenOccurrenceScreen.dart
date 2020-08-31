@@ -28,6 +28,7 @@ class ManualLocationOpenOccurrenceScreen extends StatelessWidget {
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
+                  crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
                     TextFieldManualLocationOpenOccurrence(
                       hint: 'Rua',

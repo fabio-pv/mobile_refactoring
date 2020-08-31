@@ -40,7 +40,7 @@ class _LocationOpenOccurrenceScreenState
           position.longitude,
         ),
         zoom: 19,
-        tilt: 40
+        tilt: 40,
       );
 
       final GoogleMapController controller = await this._controller.future;
@@ -51,8 +51,33 @@ class _LocationOpenOccurrenceScreenState
     }
   }
 
-  Future<void> _getScreenCordinate() async {
+  Future<void> _setPositionByString({@required String location}) async {
+    try {
+      if (location == null) {
+        return;
+      }
+      final locationForSearch = 'Brasil Volta Redonda RJ ' + location;
 
+      List<Placemark> placemark =
+          await Geolocator().placemarkFromAddress(locationForSearch);
+
+      final newPosition = CameraPosition(
+        target: LatLng(
+          placemark.first.position.latitude,
+          placemark.first.position.longitude,
+        ),
+        zoom: 15.5,
+        tilt: 0,
+      );
+
+      final GoogleMapController controller = await this._controller.future;
+      controller.animateCamera(CameraUpdate.newCameraPosition(newPosition));
+    } catch (e) {
+      print('error');
+    }
+  }
+
+  Future<void> _getScreenCordinate() async {
     double screenWidth = MediaQuery.of(context).size.width;
     double screenHeight = MediaQuery.of(context).size.height;
 
@@ -78,13 +103,13 @@ class _LocationOpenOccurrenceScreenState
     setState(() {
       this._placemark = placemark.first;
     });
-
   }
 
   @override
   Widget build(BuildContext context) {
     return LocationOpenOccurrenceScreenProvider(
       doSetCurrentPosition: this._setCurrentPosition,
+      doSetPositionByString: this._setPositionByString,
       child: Stack(
         children: [
           GoogleMap(
