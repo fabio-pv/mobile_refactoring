@@ -71,6 +71,9 @@ class ApiClient {
   }
 
   String _makeCompleteURL({@required String endpoint}) {
+    if (endpoint == null) {
+      return this._url;
+    }
     return this._url + endpoint;
   }
 
