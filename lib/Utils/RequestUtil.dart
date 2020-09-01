@@ -19,7 +19,7 @@ class RequestUtil {
   };
 
   final String endpoint;
-  String query = '';
+  String _query = '';
   int _whereCount = 0;
 
   RequestUtil({
@@ -86,18 +86,18 @@ class RequestUtil {
   void addInQuery({
     @required String newQuery,
   }) {
-    if (this.query.isEmpty) {
-      this.query = '?';
-      this.query += newQuery;
+    if (this._query.isEmpty) {
+      this._query = '?';
+      this._query += newQuery;
       return;
     }
 
-    this.query += '&';
-    this.query += newQuery;
+    this._query += '&';
+    this._query += newQuery;
   }
 
   String result() {
-    this.query = this.endpoint + this.query;
-    return this.query;
+    this._query = this.endpoint + this._query;
+    return this._query;
   }
 }

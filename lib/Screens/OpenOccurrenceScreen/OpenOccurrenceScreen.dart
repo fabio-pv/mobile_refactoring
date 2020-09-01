@@ -1,6 +1,6 @@
 import 'package:fiscaliza_ja/Providers/OpenOccurrenceScreenProvider.dart';
+import 'package:fiscaliza_ja/Screens/OpenOccurrenceScreen/DescriptionOccurrenceScreen/DescriptionOccurrenceScreen.dart';
 import 'package:fiscaliza_ja/Screens/OpenOccurrenceScreen/FileOpenOccurrenceScreen/CameraOpenOccurrenceScreen.dart';
-import 'package:fiscaliza_ja/Screens/OpenOccurrenceScreen/FileOpenOccurrenceScreen/FileOpenOccurrenceScreen.dart';
 import 'package:fiscaliza_ja/Screens/OpenOccurrenceScreen/HeaderOpenOccurrenceScreen/HeaderOpenOccurrenceScreen.dart';
 import 'package:fiscaliza_ja/Screens/OpenOccurrenceScreen/LocationOpenOccurrenceScreen/LocationOpenOccurrenceScreen.dart';
 import 'package:fiscaliza_ja/Screens/OpenOccurrenceScreen/StepsWidgetOpenOccurrenceScreen.dart';
@@ -56,6 +56,10 @@ class _OpenOccurrenceScreenState extends State<OpenOccurrenceScreen> {
             if (this._currentStep ==
                 StepsWidgetOpenOccurrenceScreen.LOCATION_STEP) ...[
               LocationOpenOccurrenceScreen(),
+            ],
+            if (this._currentStep ==
+                StepsWidgetOpenOccurrenceScreen.DESCRIPTION_STEP) ...[
+              DescriptionOccurrenceScreen(),
             ],
             HeaderOpenOccurrenceScreen(
               step: this._currentStep,

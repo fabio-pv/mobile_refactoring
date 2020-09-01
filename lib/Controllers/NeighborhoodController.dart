@@ -15,7 +15,7 @@ class NeighborhoodController {
           .pagination(
             value: RequestUtil.PAGINATION_FALSE,
           )
-          .query;
+          .result();
 
       final iterable = await this._neighborhoodService.retrieveAll(
             queryString: querString,
