@@ -20,7 +20,12 @@ class StepsHeaderOpenOccurrenceScreen extends StatelessWidget {
               step: StepsWidgetOpenOccurrenceScreen.LOCATION_STEP,
             ),
             ElementStepHeaderOpenOccurrenceScreen(
-              icon: Icons.description,
+              icon: Icons.view_module,
+              current: true,
+              step: StepsWidgetOpenOccurrenceScreen.DESCRIPTION_STEP,
+            ),
+            ElementStepHeaderOpenOccurrenceScreen(
+              icon: Icons.assignment,
               current: true,
               step: StepsWidgetOpenOccurrenceScreen.DESCRIPTION_STEP,
             ),
