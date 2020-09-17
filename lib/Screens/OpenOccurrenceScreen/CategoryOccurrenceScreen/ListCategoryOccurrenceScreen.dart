@@ -1,11 +1,11 @@
 import 'package:fiscaliza_ja/Models/Group.dart';
-import 'package:fiscaliza_ja/Screens/OpenOccurrenceScreen/DescriptionOccurrenceScreen/RowDescriptionOccurrenceScreeen.dart';
+import 'package:fiscaliza_ja/Screens/OpenOccurrenceScreen/CategoryOccurrenceScreen/GroupCategoryOccurrenceScreen.dart';
 import 'package:flutter/material.dart';
 
-class ListDescriptionOccurrenceScreen extends StatelessWidget {
+class ListCategoryOccurrenceScreen extends StatelessWidget {
   final List<Group> listGroup;
 
-  ListDescriptionOccurrenceScreen({
+  ListCategoryOccurrenceScreen({
     @required this.listGroup,
   });
 
@@ -14,12 +14,13 @@ class ListDescriptionOccurrenceScreen extends StatelessWidget {
     return ListView.separated(
       padding: EdgeInsets.only(
         top: 100,
+        left: 15,
+        right: 15,
       ),
       itemCount: this.listGroup.length,
       itemBuilder: (BuildContext context, int index) {
-        return RowDescriptionOccurrenceScreeen(
-          nameGroup: this.listGroup[index].nome,
-          subcretaries: this.listGroup[index].subsecretaries,
+        return GroupCategoryOccurrenceScreen(
+          group: this.listGroup[index],
         );
       },
       separatorBuilder: (BuildContext context, int index) {

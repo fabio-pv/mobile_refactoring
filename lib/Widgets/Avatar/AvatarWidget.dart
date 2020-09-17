@@ -23,7 +23,7 @@ class AvatarWidget extends StatelessWidget {
       return this._anonymous();
     }
 
-    if(this.url != null){
+    if (this.url != null) {
       return this._authWithUrlType();
     }
 

@@ -33,7 +33,7 @@ class _MainState extends State<Main> {
       initialRoute: HomeScreen.route,
       routes: {
         HomeScreen.route: (context) => HomeScreen(),
-        OccurrenceDetailScreen.route: (context) => OccurrenceDetailScreen(),
+        OccurrenceDetailScreen.route: (context) => OccurrenceDetailScreen(uuid: null,),
       },
     );
   }
