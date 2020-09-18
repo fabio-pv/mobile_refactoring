@@ -11,21 +11,11 @@ class ListCategoryOccurrenceScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView.separated(
-      padding: EdgeInsets.only(
-        top: 100,
-        left: 15,
-        right: 15,
-      ),
+    return ListView.builder(
       itemCount: this.listGroup.length,
       itemBuilder: (BuildContext context, int index) {
         return GroupCategoryOccurrenceScreen(
           group: this.listGroup[index],
-        );
-      },
-      separatorBuilder: (BuildContext context, int index) {
-        return SizedBox(
-          height: 30,
         );
       },
     );
