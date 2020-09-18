@@ -20,7 +20,7 @@ class TopHeaderOpenOccurrenceScrren extends StatelessWidget {
           elevation: 5,
           heroTag: null,
           mini: true,
-          backgroundColor: Colors.grey[400],
+          backgroundColor: Colors.grey[100],
           child: Icon(
             Icons.arrow_back,
             color: Colors.black,
@@ -29,7 +29,7 @@ class TopHeaderOpenOccurrenceScrren extends StatelessWidget {
         Expanded(
           flex: 1,
           child: Card(
-            color: Colors.grey[400],
+            color: Colors.grey[100],
             elevation: 5,
             shape: GenericPattern.CARD_BORDER_RADIUS,
             child: Container(

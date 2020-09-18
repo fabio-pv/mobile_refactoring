@@ -11,11 +11,12 @@ class ListSubscretaryListCategoryOccurrenceScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      flex: 1,
+    return Container(
+      height: 300,
       child: ListView.separated(
         padding: EdgeInsets.only(
           left: 50,
+          right: 50
         ),
         scrollDirection: Axis.horizontal,
         itemCount: this.subsecretaryList.length,
