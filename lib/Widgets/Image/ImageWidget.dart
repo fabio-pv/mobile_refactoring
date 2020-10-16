@@ -2,6 +2,7 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:fiscaliza_ja/Patterns/GenericPattern.dart';
 import 'package:fiscaliza_ja/Screens/FullScreenImageScreen/FullScreenImageScreen.dart';
 import 'package:fiscaliza_ja/Screens/OccurrenceDetailScreen/ImageOccurrenceDetailScreen/ElementCarouselImageOccurrenceDetailScreen.dart';
+import 'package:fiscaliza_ja/Widgets/Image/LoadImage.dart';
 import 'package:flutter/material.dart';
 
 class ImageWidget extends StatelessWidget {
@@ -70,7 +71,11 @@ class ImageWidget extends StatelessWidget {
     this.contextAux = context;
     return CachedNetworkImage(
       imageUrl: this.url,
-      placeholder: (context, url) => CircularProgressIndicator(),
+      placeholder: (context, url) => LoadImage(
+        height: this.height,
+        width: this.width,
+        borderRadius: this.borderRadius,
+      ),
       errorWidget: (context, url, error) => Icon(Icons.error),
       imageBuilder: (context, imageProvider) => Container(
         width: this.width ?? double.maxFinite,

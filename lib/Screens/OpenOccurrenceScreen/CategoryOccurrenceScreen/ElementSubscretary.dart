@@ -19,7 +19,9 @@ class ElementSubscretary extends StatelessWidget {
         elevation: 3,
         child: InkWell(
           onTap: () {
-            print('222222222');
+            print(
+              'Ao criar verificar se já existe com uma modal legal'
+            );
           },
           borderRadius: BorderRadius.circular(
             GenericPattern.BORDER_RADIUS,
@@ -33,15 +35,10 @@ class ElementSubscretary extends StatelessWidget {
               children: [
                 Center(
                   child: Container(
-                    padding: EdgeInsets.all(3),
-                    decoration: BoxDecoration(
-                      color: Theme.of(context).primaryColor,
-                      borderRadius: BorderRadius.circular(100),
-                    ),
                     child: ImageWidget(
                       url: this.subsecretary.imagem,
-                      height: 120,
-                      width: 120,
+                      height: 130,
+                      width: 130,
                       borderRadius: 100,
                     ),
                   ),
