@@ -43,7 +43,7 @@ class SecretaryPublicOccurrenceDetailScreen extends StatelessWidget {
             SizedBox(
               height: 10,
             ),
-            RatingBar(
+            RatingBar.builder(
               onRatingUpdate: null,
               initialRating: 4,
               itemCount: 5,

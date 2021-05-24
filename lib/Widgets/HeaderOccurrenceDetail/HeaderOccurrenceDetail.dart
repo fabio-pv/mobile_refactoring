@@ -155,7 +155,7 @@ class _HeaderOccurrenceDetailState extends State<HeaderOccurrenceDetail>
               Badge(
                 badgeColor: Theme.of(context).primaryColor,
                 shape: BadgeShape.square,
-                borderRadius: 20,
+                borderRadius: BorderRadius.circular(20.0),
                 badgeContent: Text(
                   widget.likes.toString(),
                   style: TextStyle(

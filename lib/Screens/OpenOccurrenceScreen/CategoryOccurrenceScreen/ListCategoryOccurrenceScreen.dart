@@ -12,8 +12,7 @@ class ListCategoryOccurrenceScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
-    if(this.listGroup.length == 0){
+    if (this.listGroup.length == 0) {
       return Container();
     }
 

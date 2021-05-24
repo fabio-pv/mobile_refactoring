@@ -19,9 +19,7 @@ class ElementSubscretary extends StatelessWidget {
         elevation: 3,
         child: InkWell(
           onTap: () {
-            print(
-              'Ao criar verificar se já existe com uma modal legal'
-            );
+            print('Ao criar verificar se já existe com uma modal legal');
           },
           borderRadius: BorderRadius.circular(
             GenericPattern.BORDER_RADIUS,
@@ -56,7 +54,7 @@ class ElementSubscretary extends StatelessWidget {
                   height: 30,
                 ),
                 Center(
-                  child: RatingBar(
+                  child: RatingBar.builder(
                     onRatingUpdate: null,
                     initialRating: 4,
                     itemCount: 5,
